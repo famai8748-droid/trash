@@ -6052,27 +6052,30 @@ body.theme-rich-luxury {
 }
 
 .btn-scanner-scan {
-  flex: 1 1 240px;
+  flex: 0 0 auto;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 8px;
   background: linear-gradient(135deg, #0d9488 0%, #14b8a6 50%, #2dd4bf 100%);
   color: #090d11;
   border: none;
-  padding: 12px 24px;
-  border-radius: var(--radius-full);
-  font-size: 1.02rem;
+  padding: 10px 20px;
+  min-height: 42px;
+  max-height: 46px;
+  border-radius: 12px;
+  font-size: 0.95rem;
   font-weight: 700;
   font-family: var(--font-heading);
   cursor: pointer;
   transition: all 0.25s ease;
-  box-shadow: 0 8px 24px rgba(45, 212, 191, 0.35);
+  box-shadow: 0 4px 14px rgba(45, 212, 191, 0.35);
+  box-sizing: border-box;
 }
 
 .btn-scanner-scan:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 30px rgba(45, 212, 191, 0.5);
+  box-shadow: 0 8px 20px rgba(45, 212, 191, 0.5);
   filter: brightness(1.08);
 }
 
@@ -6081,19 +6084,24 @@ body.theme-rich-luxury {
 }
 
 .btn-scanner-secondary {
+  flex: 0 0 auto;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.12);
   color: #e2e8f0;
-  padding: 12px 18px;
-  border-radius: var(--radius-full);
-  font-size: 0.92rem;
+  padding: 10px 18px;
+  min-height: 40px;
+  max-height: 44px;
+  border-radius: 10px;
+  font-size: 0.88rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
   font-family: var(--font-heading);
+  box-sizing: border-box;
 }
 
 .btn-scanner-secondary:hover {
@@ -6526,14 +6534,16 @@ body.theme-rich-luxury {
 }
 
 .btn-sell-direct-action {
-  flex: 1 1 180px;
+  flex: 0 0 auto;
   background: #2dd4bf;
   color: #090d11;
   border: none;
   font-size: 0.92rem;
   font-weight: 700;
-  padding: 10px 18px;
-  border-radius: var(--radius-full);
+  padding: 11px 18px;
+  min-height: 42px;
+  max-height: 46px;
+  border-radius: 12px;
   cursor: pointer;
   font-family: var(--font-heading);
   display: inline-flex;
@@ -6541,6 +6551,7 @@ body.theme-rich-luxury {
   justify-content: center;
   gap: 6px;
   transition: all 0.2s ease;
+  box-sizing: border-box;
 }
 
 .btn-sell-direct-action:hover {
@@ -6549,19 +6560,23 @@ body.theme-rich-luxury {
 }
 
 .btn-save-idea-action {
+  flex: 0 0 auto;
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.15);
   color: #ffffff;
-  font-size: 0.92rem;
+  font-size: 0.88rem;
   font-weight: 600;
   padding: 10px 18px;
-  border-radius: var(--radius-full);
+  min-height: 40px;
+  max-height: 44px;
+  border-radius: 10px;
   cursor: pointer;
   font-family: var(--font-heading);
   display: inline-flex;
   align-items: center;
   gap: 6px;
   transition: all 0.2s ease;
+  box-sizing: border-box;
 }
 
 .btn-save-idea-action:hover {
@@ -7731,21 +7746,46 @@ body.theme-rich-luxury {
     -webkit-overflow-scrolling: touch;
   }
   .scanner-viewfinder-frame {
-    width: 100%;
-    aspect-ratio: 4 / 3;
-    max-height: 250px;
-    border-radius: 12px;
-    overflow: hidden;
+    width: 100% !important;
+    aspect-ratio: 4 / 3 !important;
+    min-height: 200px !important;
+    max-height: 240px !important;
+    flex-shrink: 0 !important;
+    border-radius: 14px !important;
+    overflow: hidden !important;
   }
   .scanner-controls-toolbar {
-    flex-direction: column;
-    gap: 8px;
+    flex-direction: column !important;
+    gap: 8px !important;
+    width: 100% !important;
+    flex-shrink: 0 !important;
   }
   .btn-scanner-scan {
-    width: 100%;
-    flex: 1 1 100%;
-    padding: 12px 18px;
-    font-size: 0.95rem;
+    width: 100% !important;
+    flex: 0 0 auto !important;
+    height: 44px !important;
+    min-height: 44px !important;
+    max-height: 44px !important;
+    border-radius: 12px !important;
+    padding: 0 16px !important;
+    font-size: 0.92rem !important;
+    font-weight: 700 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    box-sizing: border-box !important;
+  }
+  .btn-scanner-secondary {
+    width: 100% !important;
+    flex: 0 0 auto !important;
+    height: 38px !important;
+    min-height: 38px !important;
+    max-height: 38px !important;
+    border-radius: 10px !important;
+    padding: 0 14px !important;
+    font-size: 0.85rem !important;
+    box-sizing: border-box !important;
   }
   .scanner-quick-presets .preset-pill-list {
     display: flex;
@@ -7773,11 +7813,40 @@ body.theme-rich-luxury {
     gap: 8px;
   }
   .scanner-results-bottom-actions {
-    flex-direction: column;
-    gap: 8px;
+    flex-direction: column !important;
+    gap: 8px !important;
+    width: 100% !important;
+    flex-shrink: 0 !important;
   }
-  .scanner-results-bottom-actions button {
-    width: 100%;
+  .btn-sell-direct-action {
+    width: 100% !important;
+    flex: 0 0 auto !important;
+    height: 44px !important;
+    min-height: 44px !important;
+    max-height: 44px !important;
+    border-radius: 12px !important;
+    padding: 0 16px !important;
+    font-size: 0.92rem !important;
+    font-weight: 700 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    box-sizing: border-box !important;
+  }
+  .btn-save-idea-action {
+    width: 100% !important;
+    flex: 0 0 auto !important;
+    height: 40px !important;
+    min-height: 40px !important;
+    max-height: 40px !important;
+    border-radius: 10px !important;
+    padding: 0 14px !important;
+    font-size: 0.86rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
   }
 
   /* HIDE Floating Dock on Mobile - replaced by Top Feature button */
