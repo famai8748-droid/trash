@@ -66,6 +66,11 @@ html {
   font-size: 16px;
   scroll-behavior: smooth;
   color-scheme: light;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 body {
@@ -76,6 +81,11 @@ body {
   letter-spacing: 0.01em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+  position: relative;
+  touch-action: manipulation;
 }
 
 img {
@@ -7207,13 +7217,45 @@ body.theme-rich-luxury {
 }
 
 /* ==========================================================================
-   BREAKPOINT: 768px (Mobile Phones & Portrait Tablets)
+   BREAKPOINTS: MOBILE RESPONSIVE & AUTO-SCALING ENGINE (<= 768px, <= 480px, <= 375px)
    ========================================================================== */
+
 @media (max-width: 768px) {
-  .container {
-    padding: 0 16px;
+  /* Dynamic Auto Root Scaling: Automatically scales all rem-based typography,
+     paddings, gaps, and button sizes to fit mobile viewports harmoniously */
+  :root,
+  html {
+    font-size: 14.5px !important;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
   }
-  
+
+  body {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+    position: relative;
+  }
+
+  /* Suppress elements that cause horizontal overflow / jitter on mobile */
+  .parallax-luxury-watermark,
+  .parallax-orb {
+    display: none !important;
+  }
+
+  /* Prevent iOS Safari from forcefully auto-zooming into inputs, which breaks page scale */
+  input,
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+
+  .container {
+    padding: 0 14px;
+    max-width: 100%;
+  }
+
   /* Top Announcement */
   .top-announcement {
     padding: 8px 12px;
@@ -7231,23 +7273,23 @@ body.theme-rich-luxury {
     font-size: 0.76rem;
   }
 
-  /* Main Header on Mobile: 2-Row Grid */
+  /* Main Header on Mobile: 2-Row Compact Grid */
   .header-inner {
     flex-wrap: wrap;
-    padding: 10px 16px;
+    padding: 10px 14px;
     min-height: auto;
-    gap: 10px;
+    gap: 8px;
   }
   .brand-logo {
-    gap: 10px;
+    gap: 8px;
   }
   .brand-icon {
-    width: 38px;
-    height: 38px;
-    border-radius: 10px;
+    width: 36px;
+    height: 36px;
+    border-radius: 9px;
   }
   .brand-name {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
   }
   .brand-tag {
     font-size: 0.58rem;
@@ -7261,13 +7303,13 @@ body.theme-rich-luxury {
     display: none;
   }
   .btn-header-zone {
-    padding: 8px 14px;
-    font-size: 0.88rem;
-  }
-  .btn-header-zone .header-zone-title {
+    padding: 7px 12px;
     font-size: 0.85rem;
   }
-  
+  .btn-header-zone .header-zone-title {
+    font-size: 0.82rem;
+  }
+
   /* Full Width Search Bar on Mobile */
   .search-container {
     order: 3;
@@ -7276,88 +7318,155 @@ body.theme-rich-luxury {
     max-width: 100%;
   }
   .search-box {
-    height: 44px;
+    height: 42px;
     border-radius: 12px;
   }
   .search-box input {
-    font-size: 0.9rem;
+    font-size: 16px !important;
   }
   .search-submit-btn {
-    padding: 0 16px;
-    font-size: 0.88rem;
+    padding: 0 14px;
+    font-size: 0.85rem;
   }
 
   /* Hero Section */
   .hero-story-banner {
-    padding: 28px 0 24px;
+    padding: 24px 0 20px;
   }
   .hero-tag-badge {
-    padding: 4px 12px;
-    font-size: 0.72rem;
-    margin-bottom: 14px;
+    padding: 4px 10px;
+    font-size: 0.7rem;
+    margin-bottom: 12px;
   }
   .hero-title {
-    font-size: clamp(1.75rem, 6.5vw, 2.3rem);
+    font-size: clamp(1.6rem, 6vw, 2.1rem);
     line-height: 1.25;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
   }
   .hero-desc {
-    font-size: 0.92rem;
-    line-height: 1.6;
-    margin-bottom: 20px;
+    font-size: 0.9rem;
+    line-height: 1.55;
+    margin-bottom: 18px;
   }
   .hero-stats {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 6px;
-    padding: 12px 14px;
+    padding: 10px 12px;
     width: 100%;
   }
   .stat-num {
-    font-size: 1.15rem;
+    font-size: 1.1rem;
   }
   .stat-label {
-    font-size: 0.68rem;
+    font-size: 0.65rem;
     line-height: 1.3;
   }
   .stat-divider {
     display: none;
   }
   .spotlight-card {
-    border-radius: 16px;
+    border-radius: 14px;
   }
   .spotlight-info {
-    padding: 16px;
+    padding: 14px;
   }
   .spotlight-name {
-    font-size: 1.05rem;
+    font-size: 1rem;
   }
   .spotlight-auction-bar {
-    padding: 10px 14px;
-    margin-bottom: 14px;
+    padding: 8px 12px;
+    margin-bottom: 12px;
   }
 
-  /* Product Detail Floating Modal (Stacked Order) */
-  .detail-modal-dialog {
-    width: 95vw !important;
-    max-width: 95vw !important;
-    max-height: 94vh !important;
-    padding: 16px 14px !important;
-    border-radius: 16px !important;
-    margin: 10px auto;
+  /* ==========================================================================
+     FULLSCREEN NATIVE MODAL VIEW ON MOBILE (Dynamic 100dvh, Safe Areas)
+     ========================================================================== */
+  .modal-backdrop,
+  .detail-modal-backdrop,
+  .ai-scanner-modal-backdrop,
+  .sell-waste-modal-backdrop,
+  .admin-modal-backdrop,
+  .blueprint-modal-backdrop,
+  .supply-modal-backdrop,
+  .zone-modal-backdrop {
+    padding: 0 !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
   }
+
+  .detail-modal-dialog,
+  .ai-scanner-modal-dialog,
+  .post-modal-dialog,
+  .sell-waste-modal-dialog,
+  .admin-modal-dialog,
+  .blueprint-modal-dialog,
+  .supply-modal-dialog,
+  .zone-modal-dialog {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    min-height: 100dvh !important;
+    height: auto !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+    border-left: none !important;
+    border-right: none !important;
+    border-top: none !important;
+    padding: max(14px, env(safe-area-inset-top)) 14px max(24px, env(safe-area-inset-bottom)) 14px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Smooth slide up animation for mobile detail modal */
+  .detail-modal-backdrop.zooming-in .detail-modal-dialog {
+    animation: mobileModalSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+  }
+
+  @keyframes mobileModalSlideUp {
+    from {
+      transform: translateY(32px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .modal-close-btn {
+    top: max(12px, env(safe-area-inset-top)) !important;
+    right: 12px !important;
+    width: 38px !important;
+    height: 38px !important;
+    font-size: 1.3rem !important;
+    background: rgba(15, 23, 42, 0.75) !important;
+    color: #fff !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    z-index: 100 !important;
+  }
+
+  /* Product Detail Modal Content on Mobile */
   .product-detail-layout {
     display: flex;
     flex-direction: column;
     gap: 14px;
+    padding-top: 24px;
   }
   .detail-viewer-column {
     order: 1;
     width: 100%;
   }
   .detail-viewer-column .main-image-frame {
-    max-height: 280px;
+    max-height: 290px;
+    width: 100%;
     aspect-ratio: 1 / 1;
+    border-radius: 14px;
+    overflow: hidden;
   }
   .detail-gallery-column {
     order: 2;
@@ -7369,7 +7478,7 @@ body.theme-rich-luxury {
     gap: 8px;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    padding-bottom: 4px;
+    padding-bottom: 6px;
     scrollbar-width: none;
   }
   .gallery-vertical-thumbs::-webkit-scrollbar {
@@ -7379,17 +7488,18 @@ body.theme-rich-luxury {
     width: 58px;
     height: 58px;
     flex-shrink: 0;
+    border-radius: 8px;
   }
   .detail-info-column {
     order: 3;
     width: 100%;
   }
   .detail-title {
-    font-size: 1.35rem;
+    font-size: 1.3rem;
     line-height: 1.3;
   }
   .materials-provenance-box {
-    padding: 14px;
+    padding: 12px;
   }
   .provenance-grid {
     grid-template-columns: 1fr;
@@ -7402,30 +7512,26 @@ body.theme-rich-luxury {
   .btn-place-bid-action,
   .btn-buy-instant-action {
     width: 100%;
-  }
-  .modal-close-btn {
-    top: 10px;
-    right: 10px;
-    width: 34px;
-    height: 34px;
-    font-size: 1.25rem;
+    padding: 12px 18px;
   }
 
-  /* AI Vision Scanner Cockpit */
+  /* AI Vision Scanner Cockpit on Mobile */
   .ai-scanner-modal-dialog {
-    width: 96vw !important;
-    height: 94vh !important;
-    max-height: 94vh !important;
-    border-radius: 16px !important;
+    display: flex;
+    flex-direction: column;
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    overflow-y: auto !important;
   }
   .ai-scanner-modal-header {
-    padding: 12px 14px;
+    padding: max(14px, env(safe-area-inset-top)) 14px 10px;
     flex-direction: column;
     align-items: stretch;
-    gap: 10px;
+    gap: 8px;
+    flex-shrink: 0;
   }
   .ai-scanner-title-group h2 {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     line-height: 1.3;
   }
   .ai-scanner-title-group p {
@@ -7436,7 +7542,7 @@ body.theme-rich-luxury {
     gap: 6px;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    padding-bottom: 2px;
+    padding-bottom: 4px;
     scrollbar-width: none;
     width: 100%;
   }
@@ -7452,11 +7558,17 @@ body.theme-rich-luxury {
   .ai-scanner-cockpit-body {
     grid-template-columns: 1fr;
     gap: 14px;
-    padding: 12px;
+    padding: 12px 14px;
+    flex: 1 1 auto;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
   .scanner-viewfinder-frame {
-    max-height: 230px;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    max-height: 250px;
+    border-radius: 12px;
+    overflow: hidden;
   }
   .scanner-controls-toolbar {
     flex-direction: column;
@@ -7465,7 +7577,7 @@ body.theme-rich-luxury {
   .btn-scanner-scan {
     width: 100%;
     flex: 1 1 100%;
-    padding: 11px 18px;
+    padding: 12px 18px;
     font-size: 0.95rem;
   }
   .scanner-quick-presets .preset-pill-list {
@@ -7500,11 +7612,12 @@ body.theme-rich-luxury {
   .scanner-results-bottom-actions button {
     width: 100%;
   }
-  
-  /* Floating AI Dock on mobile */
+
+  /* Floating AI Dock on Mobile */
   .ai-scanner-dock {
-    bottom: 14px !important;
+    bottom: max(16px, env(safe-area-inset-bottom)) !important;
     left: 14px !important;
+    z-index: 850 !important;
   }
   .btn-ai-scanner-trigger {
     padding: 8px 14px;
@@ -7521,20 +7634,7 @@ body.theme-rich-luxury {
     font-size: 0.85rem;
   }
 
-  /* All Other Modals Form Grids */
-  .post-modal-dialog,
-  .sell-waste-modal-dialog,
-  .admin-modal-dialog,
-  .blueprint-modal-dialog,
-  .supply-modal-dialog,
-  .zone-modal-dialog {
-    width: 95vw !important;
-    max-width: 95vw !important;
-    max-height: 94vh !important;
-    padding: 16px 14px !important;
-    border-radius: 16px !important;
-    margin: 10px auto;
-  }
+  /* Forms and Dialog Layouts across all Modals */
   .post-form,
   .sell-waste-form,
   .admin-modal-header,
@@ -7545,7 +7645,7 @@ body.theme-rich-luxury {
   .supply-modal-header,
   .supply-modal-body,
   .zone-modal-dialog {
-    padding: 12px 10px !important;
+    padding: 10px 4px !important;
   }
   .form-grid,
   .sell-waste-grid,
@@ -7561,7 +7661,7 @@ body.theme-rich-luxury {
   .supply-kits-grid,
   .blueprint-cards-grid {
     grid-template-columns: 1fr !important;
-    gap: 16px !important;
+    gap: 14px !important;
   }
   .zone-cards-grid {
     grid-template-columns: 1fr !important;
@@ -7583,47 +7683,68 @@ body.theme-rich-luxury {
     padding: 8px 14px;
     font-size: 0.85rem;
   }
-  .pending-card {
+  .pending-card,
+  .intake-card {
     grid-template-columns: 1fr !important;
+    display: flex;
+    flex-direction: column;
     gap: 12px;
-    padding: 14px;
+    padding: 12px;
+  }
+  .intake-thumb,
+  .pending-thumb {
+    width: 100% !important;
+    height: 170px !important;
+    object-fit: cover !important;
+    border-radius: 10px !important;
+  }
+  .model-class-table-wrap,
+  .admin-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
 }
 
 /* ==========================================================================
-   BREAKPOINT: 560px (Standard Mobile Phones)
+   BREAKPOINT: 480px (Standard Smartphones - e.g. iPhone 13/14/15, Galaxy S)
    ========================================================================== */
-@media (max-width: 560px) {
+@media (max-width: 480px) {
+  :root,
+  html {
+    font-size: 13.5px !important;
+  }
+
   .container {
     padding: 0 12px;
   }
   .catalog-section {
-    padding: 24px 0 48px;
+    padding: 20px 0 40px;
   }
   .catalog-header-info {
     flex-direction: column;
     align-items: flex-start;
     gap: 6px;
-    margin-bottom: 18px;
+    margin-bottom: 16px;
   }
   .section-title {
-    font-size: 1.35rem;
+    font-size: 1.3rem;
   }
   .product-grid {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 18px;
   }
   .product-card {
-    border-radius: 16px;
+    border-radius: 14px;
   }
   .product-image-container {
-    height: 280px;
+    height: 270px;
   }
   .product-info {
-    padding: 16px 14px;
+    padding: 14px 12px;
   }
   .product-title {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
   }
   .hero-stats {
     grid-template-columns: 1fr;
@@ -7636,5 +7757,26 @@ body.theme-rich-luxury {
   .model-stats-grid {
     grid-template-columns: 1fr;
     gap: 6px;
+  }
+}
+
+/* ==========================================================================
+   BREAKPOINT: 375px (Compact Smartphones - e.g. iPhone SE, Mini)
+   ========================================================================== */
+@media (max-width: 375px) {
+  :root,
+  html {
+    font-size: 12.5px !important;
+  }
+
+  .brand-name {
+    font-size: 1.05rem;
+  }
+  .btn-header-zone {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+  .product-image-container {
+    height: 240px;
   }
 }

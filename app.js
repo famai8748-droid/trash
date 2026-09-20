@@ -1457,19 +1457,24 @@ window.viewKitBlueprint = function(bpId) {
 // ==========================================================================
 // ADMIN STUDIO BACKEND (รวมการอนุมัติสินค้า และตรวจรับขยะที่ลูกค้าส่งขาย)
 // ==========================================================================
-openAdminModalBtn.addEventListener('click', () => {
+function openAdminModal() {
+  if (!adminModal) return;
   adminModal.classList.add('open');
   document.body.style.overflow = 'hidden';
   renderPendingCards();
   renderCustomerIntakeList();
   renderAdminCatalogTable();
   renderAdminSupplyTable();
-});
+}
 
-closeAdminModalBtn.addEventListener('click', () => {
+function closeAdminModal() {
+  if (!adminModal) return;
   adminModal.classList.remove('open');
   document.body.style.overflow = '';
-});
+}
+
+openAdminModalBtn?.addEventListener('click', openAdminModal);
+closeAdminModalBtn?.addEventListener('click', closeAdminModal);
 
 document.querySelectorAll('.admin-tab').forEach(tab => {
   tab.addEventListener('click', () => {
@@ -1904,20 +1909,21 @@ aiCopyStoryBtn.addEventListener('click', () => {
 // ==========================================================================
 // POST ITEM LOGIC
 // ==========================================================================
-openPostModalBtn.addEventListener('click', () => {
+function openPostModal() {
+  if (!postModal) return;
   postModal.classList.add('open');
   document.body.style.overflow = 'hidden';
-});
+}
 
-closePostModalBtn.addEventListener('click', () => {
+function closePostModal() {
+  if (!postModal) return;
   postModal.classList.remove('open');
   document.body.style.overflow = '';
-});
+}
 
-cancelPostBtn.addEventListener('click', () => {
-  postModal.classList.remove('open');
-  document.body.style.overflow = '';
-});
+openPostModalBtn?.addEventListener('click', openPostModal);
+closePostModalBtn?.addEventListener('click', closePostModal);
+cancelPostBtn?.addEventListener('click', closePostModal);
 
 radioAuction.addEventListener('change', () => {
   if (radioAuction.checked) {
