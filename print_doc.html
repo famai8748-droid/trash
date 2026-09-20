@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>RE:CRAFT - Project Overview & System Specifications</title>
+  
+  <!-- Google Fonts for Thai & English -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  
+  <style>
+    @page {
+      size: A4 portrait;
+      margin: 16mm 14mm 16mm 14mm;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Prompt', -apple-system, sans-serif;
+      color: #0f172a;
+      background: #ffffff;
+      line-height: 1.75;
+      font-size: 13px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Cover / Document Header */
+    .doc-header {
+      border-bottom: 2px solid #0f172a;
+      padding-bottom: 18px;
+      margin-bottom: 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .brand-block {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-logo-badge {
+      width: 44px;
+      height: 44px;
+      background: #090d11;
+      color: #2dd4bf;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .brand-title-wrap h1 {
+      font-family: 'Cinzel', 'Kanit', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #090d11;
+      letter-spacing: 0.05em;
+      line-height: 1.2;
+    }
+
+    .brand-title-wrap p {
+      font-size: 11px;
+      color: #0d9488;
+      font-weight: 600;
+      font-family: 'Space Grotesk', sans-serif;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .doc-meta {
+      text-align: right;
+      font-size: 10.5px;
+      color: #64748b;
+      line-height: 1.5;
+    }
+
+    .doc-badge {
+      display: inline-block;
+      background: #ecfdf5;
+      color: #065f46;
+      border: 1px solid #a7f3d0;
+      padding: 2px 8px;
+      border-radius: 9999px;
+      font-weight: 600;
+      font-size: 10px;
+      margin-bottom: 4px;
+    }
+
+    /* Section Headings */
+    h2.section-title {
+      font-family: 'Kanit', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: #090d11;
+      border-left: 4px solid #0d9488;
+      padding-left: 10px;
+      margin: 22px 0 12px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      page-break-after: avoid;
+    }
+
+    h3.sub-title {
+      font-family: 'Kanit', sans-serif;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #0f172a;
+      margin: 14px 0 6px 0;
+      page-break-after: avoid;
+    }
+
+    p {
+      margin-bottom: 10px;
+      color: #334155;
+      line-height: 1.75;
+      text-align: justify;
+    }
+
+    /* Callout & Quotes */
+    .quote-box {
+      background: #f0fdfa;
+      border-left: 3px solid #0d9488;
+      padding: 10px 14px;
+      border-radius: 0 8px 8px 0;
+      margin: 10px 0 16px 0;
+      font-size: 12px;
+      color: #134e4a;
+    }
+
+    .quote-box strong {
+      color: #0f766e;
+    }
+
+    /* Vector Ecosystem Diagram */
+    .ecosystem-diagram {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 14px 10px;
+      margin: 14px 0 20px 0;
+      page-break-inside: avoid;
+    }
+
+    .diagram-flow {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+    }
+
+    .diagram-node {
+      flex: 1;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 8px 6px;
+      text-align: center;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    }
+
+    .diagram-node.highlight {
+      border-color: #0d9488;
+      background: #f0fdfa;
+    }
+
+    .node-num {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      line-height: 18px;
+      background: #090d11;
+      color: #ffffff;
+      border-radius: 50%;
+      font-size: 9px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .node-title {
+      font-weight: 700;
+      font-size: 10.5px;
+      color: #090d11;
+      line-height: 1.3;
+    }
+
+    .node-desc {
+      font-size: 9px;
+      color: #64748b;
+      margin-top: 2px;
+      line-height: 1.25;
+    }
+
+    .diagram-arrow {
+      color: #0d9488;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    /* Target Customer Cards Grid */
+    .audience-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 12px 0 18px 0;
+      page-break-inside: avoid;
+    }
+
+    .audience-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 12px 14px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+      page-break-inside: avoid;
+    }
+
+    .audience-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 9.5px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 4px;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+
+    .badge-buyer { background: #dbeafe; color: #1e40af; }
+    .badge-maker { background: #fef3c7; color: #92400e; }
+    .badge-harvester { background: #dcfce7; color: #166534; }
+    .badge-admin { background: #f3e8ff; color: #6b21a8; }
+
+    .audience-card h4 {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #090d11;
+      margin-bottom: 4px;
+    }
+
+    .audience-card ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .audience-card li {
+      font-size: 11px;
+      color: #475569;
+      line-height: 1.6;
+      margin-bottom: 3px;
+      position: relative;
+      padding-left: 12px;
+    }
+
+    .audience-card li::before {
+      content: "•";
+      color: #0d9488;
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+    }
+
+    /* Feature Blocks */
+    .feature-block {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin-bottom: 10px;
+      page-break-inside: avoid;
+    }
+
+    .feature-block h4 {
+      font-size: 12px;
+      font-weight: 700;
+      color: #0d9488;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .feature-block ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .feature-block li {
+      font-size: 11px;
+      color: #334155;
+      line-height: 1.6;
+      position: relative;
+      padding-left: 12px;
+      margin-bottom: 2px;
+    }
+
+    .feature-block li::before {
+      content: "-";
+      position: absolute;
+      left: 2px;
+      color: #64748b;
+    }
+
+    /* Comparison Table */
+    table.spec-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 16px 0;
+      font-size: 11px;
+      page-break-inside: avoid;
+    }
+
+    table.spec-table th {
+      background: #090d11;
+      color: #ffffff;
+      text-align: left;
+      padding: 8px 12px;
+      font-weight: 600;
+    }
+
+    table.spec-table td {
+      padding: 8px 12px;
+      border-bottom: 1px solid #e2e8f0;
+      color: #334155;
+      vertical-align: top;
+    }
+
+    table.spec-table tr:nth-child(even) td {
+      background: #f8fafc;
+    }
+
+    table.spec-table td:last-child {
+      font-weight: 600;
+      color: #0f766e;
+    }
+
+    .page-break {
+      page-break-before: always;
+    }
+
+    .doc-footer {
+      border-top: 1px solid #e2e8f0;
+      padding-top: 10px;
+      margin-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 9.5px;
+      color: #94a3b8;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Page 1 Header -->
+  <div class="doc-header">
+    <div class="brand-block">
+      <div class="brand-logo-badge">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M7 19H4.815a1.83 1.83 0 0 1-1.57-.881 1.785 1.785 0 0 1-.004-1.784L7.196 9.5"/>
+          <path d="M11 19h8.2a1.8 1.8 0 0 0 1.58-.9 1.8 1.8 0 0 0 .01-1.8L16.8 9.5"/>
+          <path d="M11 5l3.2 5.5h-8.4L9 5a2 2 0 0 1 2 0z"/>
+          <circle cx="12" cy="13" r="2"/>
+        </svg>
+      </div>
+      <div class="brand-title-wrap">
+        <h1>RE:CRAFT</h1>
+        <p>Upcycle Luxury & Circular Marketplace // Document Overview</p>
+      </div>
+    </div>
+    <div class="doc-meta">
+      <span class="doc-badge">Official Specification</span><br>
+      <strong>เวอร์ชัน:</strong> 2.4 (Full Circular Edition)<br>
+      <strong>วันที่จัดทำ:</strong> กันยายน 2026<br>
+      <strong>ระบบนิเวศ:</strong> ขยะหาดบางแสน & ชายฝั่งทะเลไทย
+    </div>
+  </div>
+
+  <!-- Section 1 -->
+  <h2 class="section-title">1. ตัวงานคืออะไร? (What is RE:CRAFT?)</h2>
+  <p>
+    <strong>RE:CRAFT</strong> คือ <strong>แพลตฟอร์มมาร์เก็ตเพลสเศรษฐกิจหมุนเวียน (Circular Economy Platform)</strong> ที่เชื่อมโยงวงจรตั้งแต่ <strong>"คนเก็บขยะชายหาด"</strong> สู่ <strong>"ผู้ผลิตชิ้นงาน"</strong> และ <strong>"ผู้ซื้อสินค้าพรีเมียม"</strong> ครบวงจรในที่เดียว 
+  </p>
+  <p>
+    โมเดลของ RE:CRAFT ไม่ใช่เพียงการรีไซเคิลขยะทั่วไป แต่เป็นการทำ <strong>Upcycling สู่ระดับ Eco-Luxury & Collectibles</strong> โดยนำเศษขยะไร้ค่าจากธรรมชาติและชุมชน เช่น เศษแก้วขัดคลื่นทะเลหาดบางแสน, ฝาขวดน้ำพลาสติก HDPE, จานเบรกเก่า, หรือซากแหอวนประมง มาเปลี่ยนเป็นเครื่องประดับลักชัวรี, ของสะสม, แว่นตาแฟชั่น และของแต่งบ้านที่มีดีไซน์สวยงามระดับมาสเตอร์พีซ และเป็นของที่มี<strong>ชิ้นเดียวในโลก (One-of-a-kind)</strong>
+  </p>
+
+  <div class="quote-box">
+    <strong>หัวใจสำคัญของการเพิ่มมูลค่า (Value Proposition):</strong> สินค้าทุกชิ้นจะมี <strong>Storytelling & Poetic Signature Quote</strong> ระบุพิกัดที่มาของขยะ วันที่เก็บ และขั้นตอนการผลิตอย่างโปร่งใส เช่น <em>"ของไร้ค่าจากท้องทะเล สู่หัวใจโคตรเท่ที่ต้นคอ" (เก็บจากหาดบางแสน ชลบุรี)</em>
+  </div>
+
+  <!-- Circular Ecosystem Diagram -->
+  <div class="ecosystem-diagram">
+    <div style="font-size: 11px; font-weight: 700; color: #090d11; margin-bottom: 8px; text-transform: uppercase; font-family: 'Space Grotesk';">
+      // แผนภาพวงจรระบบนิเวศหมุนเวียน (The 6-Stage Circular Loop)
+    </div>
+    <div class="diagram-flow">
+      <div class="diagram-node">
+        <span class="node-num">1</span>
+        <div class="node-title">คนเก็บขยะ</div>
+        <div class="node-desc">เก็บ & คัดแยกขยะหาดบางแสน</div>
+      </div>
+      <div class="diagram-arrow">&rarr;</div>
+      <div class="diagram-node highlight">
+        <span class="node-num">2</span>
+        <div class="node-title">RE:CRAFT รับซื้อ</div>
+        <div class="node-desc">จ่ายเงินสด/โบนัส ล้าง & ฆ่าเชื้อ</div>
+      </div>
+      <div class="diagram-arrow">&rarr;</div>
+      <div class="diagram-node">
+        <span class="node-num">3</span>
+        <div class="node-title">คลังวัตถุดิบ</div>
+        <div class="node-desc">จัดเซ็ต DIY Kits คำนวณกำไร</div>
+      </div>
+      <div class="diagram-arrow">&rarr;</div>
+      <div class="diagram-node highlight">
+        <span class="node-num">4</span>
+        <div class="node-title">คนทำชิ้นงาน</div>
+        <div class="node-desc">ทำตาม Blueprint ไม่ต้องมีหัวศิลป์</div>
+      </div>
+      <div class="diagram-arrow">&rarr;</div>
+      <div class="diagram-node">
+        <span class="node-num">5</span>
+        <div class="node-title">ตลาดกลาง</div>
+        <div class="node-desc">แอดมินตรวจ & ลงขาย/ประมูล</div>
+      </div>
+      <div class="diagram-arrow">&rarr;</div>
+      <div class="diagram-node highlight">
+        <span class="node-num">6</span>
+        <div class="node-title">ผู้ซื้อ / นักสะสม</div>
+        <div class="node-desc">ชม 360° & เคาะประมูลสด</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 2 -->
+  <h2 class="section-title">2. กลุ่มเป้าหมายและลูกค้าคือใคร? (Target Customer Segments)</h2>
+  <div class="audience-grid">
+    <div class="audience-card">
+      <span class="audience-badge badge-buyer">กลุ่มที่ 1 // ฝั่งผู้ซื้อ</span>
+      <h4>ผู้ซื้อสินค้าและนักสะสม (Buyers & Collectors)</h4>
+      <ul>
+        <li><strong>ใคร:</strong> Gen Z, Millennials, คนรักงานมินิมอล, Eco-Conscious Shoppers, นักสะสมเครื่องประดับและงานศิลป์</li>
+        <li><strong>เป้าหมาย:</strong> เป็นเจ้าของชิ้นงานที่มีเอกลักษณ์ มีชิ้นเดียวในโลก (One-of-a-kind) และมีสตอรี่สิ่งแวดล้อมที่จับต้องได้</li>
+        <li><strong>พฤติกรรม:</strong> ชื่นชอบความตื่นเต้นในการประมูลสด (Live Auction) และต้องการสำรวจสินค้าแบบ 360 องศาเสมือนจริง</li>
+      </ul>
+    </div>
+
+    <div class="audience-card">
+      <span class="audience-badge badge-maker">กลุ่มที่ 2 // ฝั่งผู้ผลิต</span>
+      <h4>คนทำสินค้าและคนหารายได้เสริม (Makers & Non-Artists)</h4>
+      <ul>
+        <li><strong>ใคร:</strong> บุคคลทั่วไป นักศึกษา ผู้ว่างงาน หรือช่างชุมชนที่อยากสร้างรายได้เสริมแต่ <em>"ไม่มีหัวศิลปะ"</em></li>
+        <li><strong>เป้าหมาย:</strong> มีอาชีพเสริม ทำชิ้นงานขายได้เงินจริง โดยไม่ต้องลองผิดลองถูก</li>
+        <li><strong>พฤติกรรม:</strong> ต้องการ <strong>"พิมพ์เขียว (Blueprints)"</strong> เป็นสูตรคู่มือทำตามทีละสเต็ป พร้อมสั่งชุดวัตถุดิบสำเร็จรูปไปประกอบได้ทันที</li>
+      </ul>
+    </div>
+
+    <div class="audience-card">
+      <span class="audience-badge badge-harvester">กลุ่มที่ 3 // ฝั่งต้นทางขยะ</span>
+      <h4>ผู้เก็บและคัดแยกขยะ (Waste Harvesters & Community)</h4>
+      <ul>
+        <li><strong>ใคร:</strong> ชาวบ้านริมหาดบางแสน/พัทยา, นักท่องเที่ยวสายจิตอาสาเก็บขยะ (Beach Cleaners/Plogging)</li>
+        <li><strong>เป้าหมาย:</strong> แปลงขยะที่เก็บได้ให้กลายเป็น <strong>เงินสดทันที (Cash)</strong> หรือ <strong>เครดิต (+15% Bonus)</strong></li>
+        <li><strong>พฤติกรรม:</strong> ต้องการระบบคำนวณราคารับซื้อที่โปร่งใส ไม่โดนกดราคาเหมือนร้านรับซื้อของเก่าทั่วไป</li>
+      </ul>
+    </div>
+
+    <div class="audience-card">
+      <span class="audience-badge badge-admin">กลุ่มที่ 4 // ฝั่งกำกับดูแล</span>
+      <h4>ผู้ดูแลระบบและตรวจสอบมาตรฐาน (Admins & Curators)</h4>
+      <ul>
+        <li><strong>ใคร:</strong> ทีมงานผู้เชี่ยวชาญ RE:CRAFT</li>
+        <li><strong>เป้าหมาย:</strong> ควบคุมคุณภาพ รักษาความปลอดภัย และป้องกันการฟอกเขียว (Anti-Greenwashing)</li>
+        <li><strong>พฤติกรรม:</strong> ตรวจสอบพิกัดขยะจริง ตรวจสภาพชิ้นงานก่อนขึ้นระบบ และจัดการสต็อกวัตถุดิบเข้าคลัง</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- Page 2 Header -->
+  <div class="doc-header">
+    <div class="brand-block">
+      <div class="brand-title-wrap">
+        <h1>RE:CRAFT // รายละเอียดฟังก์ชันระบบ</h1>
+        <p>Comprehensive Feature Breakdown & Service Architecture</p>
+      </div>
+    </div>
+    <div class="doc-meta">
+      หน้า 2 จาก 2<br>
+      <strong>หมวดหมู่:</strong> 5 โครงสร้างฟังก์ชันหลัก
+    </div>
+  </div>
+
+  <!-- Section 3 -->
+  <h2 class="section-title">3. ฟีเจอร์และบริการที่มีให้ใช้งาน (Feature Breakdown)</h2>
+
+  <!-- Feature 1 -->
+  <div class="feature-block">
+    <h4>🛍️ 1. ระบบตลาดกลางและประสบการณ์หน้าร้าน (Marketplace & Exhibition)</h4>
+    <ul>
+      <li><strong>Etsy-Inspired Minimalist Catalog:</strong> แคตตาล็อกค้นหาและคัดกรองสินค้าตามหมวดหมู่ (เครื่องประดับ, ของสะสม, แฟชั่น, ของแต่งบ้าน) และตามแหล่งที่มา (เช่น ชายหาดบางแสน)</li>
+      <li><strong>Poetic Signature & Origin Badge:</strong> ป้ายระบุแหล่งที่มาของขยะ (`📍 ชายหาดบางแสน ชลบุรี`) พร้อมคำคมกวีประจำสินค้า เช่น <em>"ของไร้ค่าจากท้องทะเล สู่หัวใจโคตรเท่ที่ต้นคอ"</em></li>
+      <li><strong>Nike-Inspired Multi-Angle Viewer:</strong> ดูสินค้าหลายมุมมอง (ด้านหน้า, ด้านข้าง, รายละเอียด Texture Close-up)</li>
+      <li><strong>Interactive 360° Drag & Slider:</strong> ใช้เมาส์คลิกลากหมุนดูวัตถุ 360 องศา หรือเลื่อนองศา 0°–360° แบบละเอียด</li>
+      <li><strong>Live Auction Engine:</strong> นาฬิกานับถอยหลังการประมูลแบบสด วินาทีต่อวินาที, แถบเคาะราคาด่วน (+฿50, +฿100, +฿500, +฿1,000) พร้อมกระดานประวัติผู้เคาะราคาย้อนหลัง</li>
+      <li><strong>Buy-Now Checkout:</strong> ช่องทางซื้อขาดทันทีสำหรับสินค้าที่มีราคา Instant Buy</li>
+    </ul>
+  </div>
+
+  <!-- Feature 2 -->
+  <div class="feature-block">
+    <h4>♻️ 2. ระบบรับซื้อขยะจากประชาชน (Waste Buyback & Drop-off System)</h4>
+    <ul>
+      <li><strong>ดัชนีราคารับซื้อขยะตามประเภท:</strong> โปร่งใสชัดเจน (แก้วทะเล ฿40/กก., ฝาขวด HDPE ฿22/กก., ซากแหอวน ฿30/กก., เศษโลหะ ฿18/กก.)</li>
+      <li><strong>Live Payout Calculator:</strong> คำนวณเงินที่ได้รับทันทีตามน้ำหนักที่ผู้ใช้ระบุ</li>
+      <li><strong>Dual Payout Options:</strong> เลือกรับเป็นเงินสดโอนเข้าบัญชี/พร้อมเพย์ หรือรับเป็น RE:CRAFT Credit ได้โบนัสพิเศษ +15%</li>
+      <li><strong>Drop-off Logistics:</strong> เลือกจุดส่งมอบขยะหน้าร้าน (หาดบางแสน ซอย 1, หาดวอนนภา) หรือส่งไปรษณีย์</li>
+    </ul>
+  </div>
+
+  <!-- Feature 3 -->
+  <div class="feature-block">
+    <h4>📦 3. คลังวัตถุดิบขยะแปรรูปพร้อมทำ (Waste Supply Hub)</h4>
+    <ul>
+      <li><strong>Pre-sorted & Sanitized DIY Kits:</strong> ชุดวัตถุดิบขยะที่ล้างทำความสะอาด คัดเกรด และฆ่าเชื้อเรียบร้อย พร้อมส่งต่อให้ผู้ผลิต</li>
+      <li><strong>Profit Formula Preview:</strong> แสดงต้นทุนขยะ vs ราคาขายสำเร็จรูป และคำนวณอัตรากำไรเฉลี่ย (+380% ถึง +520%)</li>
+      <li><strong>Recipe Direct Linking:</strong> ปุ่มเชื่อมโยงสู่คู่มือการผลิตใน Blueprint Studio ได้ทันทีในคลิกเดียว</li>
+    </ul>
+  </div>
+
+  <!-- Feature 4 -->
+  <div class="feature-block">
+    <h4>📘 4. สตูดิโอพิมพ์เขียวอัพไซเคิล (Blueprint Studio for Non-Artists)</h4>
+    <ul>
+      <li><strong>Step-by-Step DIY Recipes:</strong> คู่มือสูตรสำเร็จสำหรับคนไม่มีพื้นฐานศิลปะ (สร้อยคอแก้วทะเล, แว่นตา HDPE, นาฬิกาจานเบรก, กำไลแหอวน)</li>
+      <li><strong>One-Click Auto-Fill to Post:</strong> กดใช้พิมพ์เขียว ข้อมูลวัสดุและวิธีทำจะถูกส่งไปกรอกในฟอร์มลงขายสินค้าอัตโนมัติ</li>
+      <li><strong>AI Story Assistant Simulation:</strong> ช่วยดึงสตอรี่จากที่มาของขยะมาเรียบเรียงเป็นคำคมและแคปชั่นขายของ</li>
+    </ul>
+  </div>
+
+  <!-- Feature 5 -->
+  <div class="feature-block">
+    <h4>⚙️ 5. ระบบหลังบ้านและการควบคุมคุณภาพ (Admin Studio & Intake Queue)</h4>
+    <ul>
+      <li><strong>Pending Approval Moderation:</strong> แอดมินตรวจสอบความถูกต้องของสินค้าและที่มาของขยะก่อนอนุมัติขึ้นหน้ามาร์เก็ตเพลส</li>
+      <li><strong>Customer Waste Intake Queue:</strong> ตรวจสอบรายการขยะที่ประชาชนส่งมา กดอนุมัติรับซื้อ และเติมสต็อกวัตถุดิบเข้าคลังอัตโนมัติ</li>
+      <li><strong>Eco Metrics Dashboard:</strong> สรุปยอดกิโลกรัมขยะที่กู้คืนได้สะสม (Rescued Waste kg) และมูลค่าเศรษฐกิจหมุนเวียนในชุมชน</li>
+    </ul>
+  </div>
+
+  <!-- Section 4 Comparison Table -->
+  <h2 class="section-title">4. สรุปความแตกต่างและจุดเด่น (Unique Selling Points)</h2>
+  <table class="spec-table">
+    <thead>
+      <tr>
+        <th style="width: 25%;">มิติการเปรียบเทียบ</th>
+        <th style="width: 35%;">ตลาดสินค้ามือสอง / ร้านรับซื้อขยะเดิม</th>
+        <th style="width: 40%;">RE:CRAFT Circular Platform</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>มูลค่าของขยะ</strong></td>
+        <td>ขายเป็นเศษขยะชั่งกิโล ได้ กก. ละ 2 - 10 บาท</td>
+        <td>อัพไซเคิลเป็นชิ้นงานลักชัวรี ชิ้นละ 1,500 - 4,500 บาท</td>
+      </tr>
+      <tr>
+        <td><strong>ความยากในการผลิต</strong></td>
+        <td>ต้องเป็นดีไซเนอร์หรือศิลปินมืออาชีพเท่านั้น</td>
+        <td>คนทั่วไปทำได้ทันทีด้วย <strong>Blueprint Studio</strong></td>
+      </tr>
+      <tr>
+        <td><strong>การเล่าเรื่อง (Story)</strong></td>
+        <td>ไม่มีสตอรี่ เป็นแค่สินค้ามือสองทั่วไป</td>
+        <td>มี <strong>Poetic Signature & Origin Badge</strong> ระบุพิกัดขยะจริง</td>
+      </tr>
+      <tr>
+        <td><strong>ประสบการณ์ชมสินค้า</strong></td>
+        <td>ภาพถ่ายแบนราบมุมเดียว</td>
+        <td><strong>360° Interactive Drag & Multi-Angle Viewer</strong></td>
+      </tr>
+      <tr>
+        <td><strong>การหมุนเวียน (Loop)</strong></td>
+        <td>ต่างคนต่างทำ วงจรขาดตอน</td>
+        <td><strong>ครบวงจร 100%:</strong> เก็บขยะ &rarr; ซื้อคืน &rarr; ผลิต &rarr; ประมูล</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Document Footer -->
+  <div class="doc-footer">
+    <span>RE:CRAFT &copy; 2026 // Bangsaen Circular Economy Project</span>
+    <span>Generated as Official PDF Specification</span>
+  </div>
+
+</body>
+</html>

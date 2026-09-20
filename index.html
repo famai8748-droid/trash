@@ -1,0 +1,1393 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RE:CRAFT | ตลาดสินค้าอัพไซเคิลจากขยะสู่ชิ้นงานระดับมาสเตอร์พีซ</title>
+  <meta name="description"
+    content="มาร์เก็ตเพลสรวมสินค้าประมูลและขายตรงจากขยะรีไซเคิล เครื่องประดับ ของสะสม พร้อมสตอรี่ที่มาของขยะ เช่น หาดบางแสน สู่ดีไซน์พรีเมียมและมุมมองหลายองศาพร้อมภาพสวมใส่จริง">
+
+  <!-- Google Fonts: Cinzel, Playfair Display, Kanit (Brand-Name Luxury Thai), Prompt, Outfit, Space Grotesk -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Kanit:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Prompt:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="theme-light-luxury">
+
+  <!-- Top Luxury Scroll Progress Indicator -->
+  <div class="luxury-scroll-progress" id="scrollProgressBar"></div>
+
+  <!-- Rich Luxury Dynamic Parallax Canvas Stage -->
+  <div class="luxury-parallax-stage" id="parallaxStage" aria-hidden="true">
+    <div class="parallax-orb orb-champagne" id="parallaxGlow1"></div>
+    <div class="parallax-orb orb-emerald" id="parallaxGlow2"></div>
+    <div class="parallax-orb orb-cyan" id="parallaxGlow3"></div>
+    <div class="parallax-luxury-watermark" id="parallaxWatermark">
+      <span>RE:CRAFT // HAUTE UPCYCLING • BANGSAEN ARCHIVE 2026 • ONE OF A KIND // CIRCULAR LUXURY</span>
+    </div>
+    <div class="parallax-grid-mesh"></div>
+  </div>
+
+  <!-- Top Announcement / Impact Banner -->
+  <div class="top-announcement" id="topAnnouncement">
+    <div class="container announcement-content">
+      <div class="announcement-badge">
+        <span class="pulse-dot"></span>
+        <span>ภารกิจกู้วิกฤตขยะ</span>
+      </div>
+      <p class="announcement-text">
+        สัปดาห์นี้ ชุมชน RE:CRAFT ชุบชีวิตขยะจากหาดบางแสนและชายฝั่งไทยไปแล้วกว่า <strong>3,840 กิโลกรัม</strong>
+      </p>
+      <div class="announcement-actions">
+        <a href="#" id="topSellWasteLink" class="announcement-link">มีขยะที่เก็บมา? ส่งขายให้เราที่นี่ &rarr;</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Primary Navigation (Minimalist Studio Header) -->
+  <header class="main-header" id="mainHeader">
+    <div class="container header-inner">
+      <!-- Brand Logo -->
+      <a href="#" class="brand-logo" id="logoBtn">
+        <span class="brand-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M7 19H4.815a1.83 1.83 0 0 1-1.57-.881 1.785 1.785 0 0 1-.004-1.784L7.196 9.5" />
+            <path d="M11 19h8.2a1.8 1.8 0 0 0 1.58-.9 1.8 1.8 0 0 0 .01-1.8L16.8 9.5" />
+            <path d="M11 5l3.2 5.5h-8.4L9 5a2 2 0 0 1 2 0z" />
+            <circle cx="12" cy="13" r="2" />
+          </svg>
+        </span>
+        <div class="brand-text-wrap">
+          <span class="brand-name">RE:CRAFT</span>
+          <span class="brand-tag">UPCYCLE STUDIO</span>
+        </div>
+      </a>
+
+      <!-- Minimalist Search Bar (Expanded & Clear) -->
+      <div class="search-container">
+        <div class="search-box">
+          <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="searchInput" placeholder="ค้นหาสร้อยคอ, แว่นตาบางแสน, นาฬิกาจานเบรก, วัตถุดิบ..."
+            autocomplete="off">
+          <button class="search-clear-btn" id="searchClearBtn" title="ล้างการค้นหา">&times;</button>
+          <button class="search-submit-btn" id="searchBtn">ค้นหา</button>
+        </div>
+      </div>
+
+      <!-- Action Buttons & Studio Hub -->
+      <div class="header-actions">
+        <!-- Zone / Category Hub Trigger Button -->
+        <button class="btn btn-header-zone" id="headerZoneBtn" title="กดเพื่อเลือกโซนและหมวดหมู่สินค้า">
+          <span class="header-zone-icon">🏛️</span>
+          <span class="header-zone-title">เลือกโซนสินค้า</span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+
+        <!-- Studio Features Group (Roomy & High Legibility) -->
+        <div class="studio-hub-group">
+          <!-- Raw Waste Material Hub Button -->
+          <button class="btn btn-ghost btn-supply-hub" id="openSupplyHubModalBtn"
+            title="คลังวัตถุดิบขยะคัดแยก สั่งรับไปทำตามพิมพ์เขียวเพื่อขายต่อ">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="m7.5 4.27 9 5.15"></path>
+              <path
+                d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z">
+              </path>
+              <path d="m3.3 7 8.7 5 8.7-5"></path>
+              <path d="M12 22V12"></path>
+            </svg>
+            <span>คลังวัตถุดิบ</span>
+          </button>
+
+          <!-- Blueprint Studio Button -->
+          <button class="btn btn-ghost btn-blueprint" id="openBlueprintModalBtn"
+            title="สูตรคู่มือแปรรูปขยะเป็นเงิน สำหรับคนไม่มีหัวศิลป์">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+            </svg>
+            <span>พิมพ์เขียว</span>
+          </button>
+
+          <!-- Admin Studio Button -->
+          <button class="btn btn-ghost btn-admin" id="openAdminModalBtn" title="ระบบหลังบ้าน ตรวจสอบและอนุมัติสินค้า">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <rect width="18" height="18" x="3" y="3" rx="2"></rect>
+              <path d="M9 3v18"></path>
+              <path d="m14 9 3 3-3 3"></path>
+            </svg>
+            <span>หลังบ้าน</span>
+            <span class="badge-count admin-badge" id="pendingCountBadge">4</span>
+          </button>
+        </div>
+
+        <div class="header-divider"></div>
+
+        <!-- Sell Waste Button (Eco Pill) -->
+        <button class="btn btn-sell-waste" id="openSellWasteModalBtn"
+          title="ส่งขยะที่คุณเก็บได้มาขายให้เราเพื่อรับเงิน">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+            <path d="M3 3v5h5"></path>
+            <path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"></path>
+            <path d="M16 21h5v-5"></path>
+          </svg>
+          <span>ส่งขยะขาย</span>
+        </button>
+
+        <!-- Post Item Button (Primary Action) -->
+        <button class="btn btn-primary btn-post" id="openPostModalBtn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+          <span>+ ลงขายสินค้า</span>
+        </button>
+
+        <div class="header-divider"></div>
+
+        <!-- Live Bids Shortcut & Wishlist -->
+        <div class="header-icons-group">
+          <button class="action-icon-btn" id="myBidsBtn" title="รายการประมูลของฉัน">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="m14 12 6.5-6.5a2.12 2.12 0 0 0-3-3L11 9"></path>
+              <path d="m12 14-6.5 6.5a2.12 2.12 0 0 1-3-3L9 11"></path>
+              <path d="m18 10-6 6"></path>
+              <path d="m2 22 4-4"></path>
+            </svg>
+            <span class="badge-count" id="bidCountBadge">2</span>
+          </button>
+
+          <button class="action-icon-btn" id="wishlistBtn" title="รายการโปรด">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path
+                d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z">
+              </path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Story Highlight Banner -->
+  <section class="hero-story-banner">
+    <div class="container hero-banner-grid">
+      <div class="hero-text">
+        <div class="hero-tag-badge">
+          <span class="hero-dot"></span>
+          <span class="tag-code">[ ARCHIVE // CIRCULAR LUXURY ]</span>
+          <span class="tag-sep">•</span>
+          <span class="tag-text">ชุบชีวิตเศษขยะสู่ชิ้นงานระดับมาสเตอร์พีซ</span>
+        </div>
+        <h1 class="hero-title">
+          ของไร้ค่าจากท้องทะเล<br>
+          <span class="text-gradient">สู่หัวใจโคตรเท่ที่ต้นคอ</span>
+        </h1>
+        <p class="hero-desc">
+          แหล่งรวมผลงานอัพไซเคิลจากศิลปินไทย เปลี่ยนเศษขยะหาดบางแสน ฝาขวดน้ำพลาสติก จานเบรกเก่า และซากแหอวน
+          ให้กลายเป็นเครื่องประดับลักชัวรี พร้อมระบบรับซื้อขยะจากประชาชนและพิมพ์เขียวแปลงขยะเป็นเงิน
+        </p>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-num" id="statOceanWaste">3.8 ตัน</span>
+            <span class="stat-label">ขยะทะเลที่เปลี่ยนเป็นงานศิลป์</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-num">100%</span>
+            <span class="stat-label">ชิ้นเดียวในโลก (One-of-a-kind)</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-num">24 ศิลปิน</span>
+            <span class="stat-label">นักออกแบบสาย Upcycle</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Featured Spotlight Card -->
+      <div class="hero-spotlight">
+        <div class="spotlight-card" id="heroFeaturedCard">
+          <div class="spotlight-sheen" id="spotlightSheen"></div>
+          <div class="spotlight-badge">⭐ ไอเทมประมูลไฮไลต์ประจำวัน</div>
+          <div class="spotlight-img-wrap">
+            <img src="assets/necklace_front.jpg" alt="สร้อยคอหัวใจมหาสมุทรบางแสน" id="spotlightMainImg">
+            <span class="spotlight-origin">📍 ชายหาดบางแสน ชลบุรี</span>
+          </div>
+          <div class="spotlight-info">
+            <h3 class="spotlight-name">สร้อยคอ "Bangsaen Debris Heart" จี้เงินรีไซเคิลฝังแก้วทะเล</h3>
+            <p class="spotlight-quote">"ของไร้ค่าจากท้องทะเล สู่หัวใจโคตรเท่ที่ต้นคอ"</p>
+            <div class="spotlight-auction-bar">
+              <div class="auction-timer-box">
+                <span class="timer-label">เวลาประมูลเหลือ:</span>
+                <span class="timer-countdown highlight-pulse" id="heroCountdown">02:44:18</span>
+              </div>
+              <div class="auction-price-box">
+                <span class="price-label">ราคาประมูลสูงสุด:</span>
+                <span class="current-bid-amount">฿2,850</span>
+              </div>
+            </div>
+            <button class="btn btn-spotlight" id="openHeroDetailBtn">
+              <span>ดูรายละเอียด & ชมมุมมองเสมือนจริง + ตอนสวมใส่</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filter & Sort Bar (Consolidated Zone Hub & Large Action Controls) -->
+  <section class="catalog-controls-section">
+    <div class="container controls-wrapper">
+      <div class="controls-left-group">
+        <!-- Consolidated Zone / Category Selector Trigger -->
+        <button class="btn-zone-picker" id="catalogZonePickerBtn" title="กดเพื่อเลือกโซนหรือหมวดหมู่สินค้า">
+          <span class="zone-picker-icon">🏛️</span>
+          <span class="zone-picker-text">โซน: <strong id="activeZoneName">ทั้งหมด (All Items)</strong></span>
+          <svg class="zone-picker-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2.2">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+
+        <!-- Quick Status Filter Pills (Large & Clear) -->
+        <div class="filter-pills" id="filterPills">
+          <button class="pill-btn active" data-filter="all">ทั้งหมด</button>
+          <button class="pill-btn" data-filter="auction-only">🔨 กำลังประมูล (Live)</button>
+          <button class="pill-btn" data-filter="buy-now">🛒 ซื้อทันที</button>
+          <button class="pill-btn" data-filter="free-shipping">🚚 ส่งฟรี</button>
+          <button class="pill-btn" data-filter="bangsaen">🌊 แหล่งบางแสน</button>
+          <button class="pill-btn" data-filter="verified">✓ รับรอง % ขยะ</button>
+        </div>
+      </div>
+
+      <div class="sort-wrapper">
+        <label for="sortSelect" class="sort-label">เรียงตาม:</label>
+        <div class="select-styled">
+          <select id="sortSelect">
+            <option value="relevance">ความเกี่ยวข้องสูงสุด</option>
+            <option value="auction-ending">เวลาประมูลใกล้หมด (Ending Soon)</option>
+            <option value="price-low">ราคา: ต่ำไปสูง</option>
+            <option value="price-high">ราคา: สูงไปต่ำ</option>
+            <option value="bids-count">ยอดเคาะประมูลสูงสุด</option>
+            <option value="newest">โพสต์มาใหม่ล่าสุด</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Product Catalog Grid -->
+  <main class="catalog-section">
+    <div class="container">
+      <div class="catalog-header-info">
+        <h2 class="section-title" id="catalogHeading">สินค้าอัพไซเคิลทั้งหมด</h2>
+        <span class="items-count" id="itemsCountText">กำลังโหลด...</span>
+      </div>
+
+      <div class="product-grid" id="productGrid">
+        <!-- Injected via JavaScript dynamically -->
+      </div>
+    </div>
+  </main>
+
+  <!-- ==========================================================================
+       CONSOLIDATED ZONE & CATEGORY EXPLORER MODAL (รวมหมวดหมู่ไว้ที่เดียว เลือกโซนขนาดใหญ่)
+       ========================================================================== -->
+  <div class="zone-modal-backdrop" id="zoneModal">
+    <div class="zone-modal-dialog">
+      <div class="zone-modal-header">
+        <div>
+          <div class="zone-modal-tag">[ CURATED ARCHIVES & UPCYCLE ZONES ]</div>
+          <h2 class="zone-modal-heading">🏛️ เลือกโซนและหมวดหมู่ชิ้นงาน</h2>
+          <p class="zone-modal-sub">คลิกเลือกโซนชิ้นงานศิลปะ วัตถุดิบขยะชายฝั่ง หรือลานเคาะราคาประมูลสดที่ต้องการสำรวจ
+          </p>
+        </div>
+        <button class="modal-close-btn" id="closeZoneModalBtn" title="ปิดหน้าต่าง">&times;</button>
+      </div>
+
+      <div class="zone-cards-grid">
+        <!-- Zone 1: All -->
+        <div class="zone-card cat-tab active" data-category="all">
+          <div class="zone-card-icon-box">🌐</div>
+          <div class="zone-card-content">
+            <div class="zone-card-top">
+              <h3 class="zone-card-title">ชิ้นงานทั้งหมด (All Curated Items)</h3>
+              <span class="zone-card-badge">ทุกชิ้นงาน</span>
+            </div>
+            <p class="zone-card-desc">สำรวจผลงานศิลปะและงานดีไซน์อัพไซเคิลทุกชิ้นในคอลเลกชัน</p>
+          </div>
+          <div class="zone-card-arrow">&rarr;</div>
+        </div>
+
+        <!-- Zone 2: Jewelry -->
+        <div class="zone-card cat-tab" data-category="jewelry">
+          <div class="zone-card-icon-box">💎</div>
+          <div class="zone-card-content">
+            <div class="zone-card-top">
+              <h3 class="zone-card-title">สร้อยคอ & เครื่องประดับ (Jewelry)</h3>
+              <span class="zone-card-badge">อัญมณีทะเล</span>
+            </div>
+            <p class="zone-card-desc">จี้เงินรีไซเคิลฝังแก้วทะเลบางแสน และกำไลข้อมือใยอวนกู้ภัย</p>
+          </div>
+          <div class="zone-card-arrow">&rarr;</div>
+        </div>
+
+        <!-- Zone 3: Collectibles -->
+        <div class="zone-card cat-tab" data-category="collectibles">
+          <div class="zone-card-icon-box">🤖</div>
+          <div class="zone-card-content">
+            <div class="zone-card-top">
+              <h3 class="zone-card-title">ของสะสม & หุ่นกล (Art Collectibles)</h3>
+              <span class="zone-card-badge">มาสเตอร์พีซ</span>
+            </div>
+            <p class="zone-card-desc">ประติมากรรมจักรกล หุ่นยนต์สตีมพังก์ และงานกลไกจากชิ้นส่วน E-Waste</p>
+          </div>
+          <div class="zone-card-arrow">&rarr;</div>
+        </div>
+
+        <!-- Zone 4: Fashion -->
+        <div class="zone-card cat-tab" data-category="fashion">
+          <div class="zone-card-icon-box">🕶️</div>
+          <div class="zone-card-content">
+            <div class="zone-card-top">
+              <h3 class="zone-card-title">แว่นตา & แฟชั่นสตรีท (Fashion)</h3>
+              <span class="zone-card-badge">สตรีทแวร์</span>
+            </div>
+            <p class="zone-card-desc">แว่นตากันแดดลายหินอ่อนจากฝาขวดน้ำ HDPE และแอคเซสเซอรี่</p>
+          </div>
+          <div class="zone-card-arrow">&rarr;</div>
+        </div>
+
+        <!-- Zone 5: Decor -->
+        <div class="zone-card cat-tab" data-category="decor">
+          <div class="zone-card-icon-box">🕰️</div>
+          <div class="zone-card-content">
+            <div class="zone-card-top">
+              <h3 class="zone-card-title">ของแต่งบ้าน & นาฬิกา (Home Decor)</h3>
+              <span class="zone-card-badge">ช่างฝีมือ</span>
+            </div>
+            <p class="zone-card-desc">นาฬิกาตั้งโต๊ะจากจานเบรกมอเตอร์ไซค์ เฟืองทองเหลือง และโคมไฟแก้วทะเล</p>
+          </div>
+          <div class="zone-card-arrow">&rarr;</div>
+        </div>
+
+        <!-- Zone 6: Bangsaen Special -->
+        <div class="zone-card cat-tab" data-category="bangsaen">
+          <div class="zone-card-icon-box">🌊</div>
+          <div class="zone-card-content">
+            <div class="zone-card-top">
+              <h3 class="zone-card-title">ซีรีส์ขยะหาดบางแสน (Bangsaen Special)</h3>
+              <span class="zone-card-badge">กู้ภัยชายหาด</span>
+            </div>
+            <p class="zone-card-desc">ชิ้นงานที่สร้างสรรค์จากขยะเก็บกู้ ณ ชายหาดบางแสนและชายฝั่งชลบุรี</p>
+          </div>
+          <div class="zone-card-arrow">&rarr;</div>
+        </div>
+
+        <!-- Zone 7: Live Auction -->
+        <div class="zone-card cat-tab" data-category="auction">
+          <div class="zone-card-icon-box">🔨</div>
+          <div class="zone-card-content">
+            <div class="zone-card-top">
+              <h3 class="zone-card-title">ลานประมูลสด (Live Auction Runway)</h3>
+              <span class="zone-card-badge highlight-badge">เปิดเคาะสด</span>
+            </div>
+            <p class="zone-card-desc">ผลงานมาสเตอร์พีซชิ้นเดียวในโลกที่กำลังเปิดให้ร่วมเคาะราคา Real-time</p>
+          </div>
+          <div class="zone-card-arrow">&rarr;</div>
+        </div>
+
+        <!-- Zone 8: Raw Waste Kits -->
+        <div class="zone-card cat-tab" data-category="supply" id="zoneSupplyHubCard">
+          <div class="zone-card-icon-box">📦</div>
+          <div class="zone-card-content">
+            <div class="zone-card-top">
+              <h3 class="zone-card-title">คลังวัตถุดิบขยะพร้อมทำ (Waste Kits)</h3>
+              <span class="zone-card-badge kit-badge">รับไปต่อยอด</span>
+            </div>
+            <p class="zone-card-desc">สั่งรับชุดวัตถุดิบขยะคัดแยกเกรดพร้อมคู่มือพิมพ์เขียวไปทำขายสร้างรายได้</p>
+          </div>
+          <div class="zone-card-arrow">&rarr;</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       NEW: SELL WASTE MODAL (ระบบส่งขยะขายให้เรา โดยลูกค้าไปเก็บมาแยก)
+       ========================================================================== -->
+  <div class="sell-waste-modal-backdrop" id="sellWasteModal">
+    <div class="sell-waste-modal-dialog">
+      <div class="sell-waste-modal-header">
+        <div>
+          <div class="sell-waste-tag">WASTE BUYBACK & COMMUNITY GRANTS</div>
+          <h2>ส่งขยะที่คุณเก็บได้มาขายให้เรา</h2>
+          <p>ไปเก็บขยะที่หาดบางแสนหรือในชุมชนมาแล้ว? คัดแยกประเภทแล้วส่งให้เรา เพื่อเปลี่ยนขยะเป็นเงินสดทันที!</p>
+        </div>
+        <button class="modal-close-btn" id="closeSellWasteModalBtn">&times;</button>
+      </div>
+
+      <!-- Price Index Table -->
+      <div class="waste-price-index-box">
+        <h4>💰 ตารางราคารับซื้อขยะอัพไซเคิล (ให้ราคาสูงกว่าร้านรับซื้อของเก่าทั่วไป)</h4>
+        <div class="price-index-grid">
+          <div class="price-card" data-waste-key="seaglass">
+            <span class="price-name">💎 แก้วทะเลบางแสนคัดเกรด</span>
+            <span class="price-rate">฿45 / กก.</span>
+            <small>เศษขวดแก้วมนสีเขียว/ฟ้า/อำพัน</small>
+          </div>
+          <div class="price-card" data-waste-key="hdpe">
+            <span class="price-name">🧴 ฝาขวดน้ำพลาสติก HDPE</span>
+            <span class="price-rate">฿35 / กก.</span>
+            <small>ล้างสะอาด แยกสี ฟ้า/ขาว/ดำ</small>
+          </div>
+          <div class="price-card" data-waste-key="ghostnet">
+            <span class="price-name">🕸️ เศษแหอวนกู้ภัยทะเล</span>
+            <span class="price-rate">฿50 / กก.</span>
+            <small>ใยไนลอนความเหนียวสูง</small>
+          </div>
+          <div class="price-card" data-waste-key="cans">
+            <span class="price-name">🥫 กระป๋องอะลูมิเนียมสะอาด</span>
+            <span class="price-rate">฿40 / กก.</span>
+            <small>กระป๋องน้ำอัดลมล้างคราบ</small>
+          </div>
+          <div class="price-card" data-waste-key="ewaste">
+            <span class="price-name">⚙️ เฟืองจักรกล & E-Waste</span>
+            <span class="price-rate">฿80 / กก.</span>
+            <small>แผงวงจร จานเบรก เฟืองนาฬิกา</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form & Live Payout Calculator -->
+      <form id="sellWasteForm" class="sell-waste-form">
+        <div class="sell-waste-grid">
+
+          <!-- Column 1: Waste Info -->
+          <div class="sell-col">
+            <div style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-size: 0.84rem; color: #64748b; font-weight: 600;">ข้อมูลขยะ</span>
+              <button type="button" class="btn btn-sm btn-ghost" id="sellWasteToScannerBtn"
+                style="border: 1px solid rgba(45,212,191,0.5); color: #0f766e; font-weight: 700; font-size: 0.82rem; background: rgba(45,212,191,0.08); border-radius: var(--radius-full); padding: 4px 12px;">
+                📷 เปิดกล้อง AI สแกนจำแนกชนิดขยะ
+              </button>
+            </div>
+            <div class="form-group">
+              <label for="sellWasteType">เลือกประเภทขยะที่คัดแยกแล้ว *</label>
+              <select id="sellWasteType" required>
+                <option value="snackfoil">ซองขนมกรุบกรอบ / ถุงฟอยล์อลูมิเนียม (฿35/กก.)</option>
+                <option value="petbottle">ขวดน้ำดื่มพลาสติกใส PET #1 (฿48/กก.)</option>
+                <option value="seaglass">แก้วทะเลบางแสนคัดสี (฿45/กก.)</option>
+                <option value="hdpe">ฝาขวดน้ำพลาสติก HDPE แยกสี (฿35/กก.)</option>
+                <option value="ghostnet">เศษแหอวนประมงกู้ภัย (฿50/กก.)</option>
+                <option value="biomineral">เปลือกหอยทะเลและมุกธรรมชาติ (฿40/กก.)</option>
+                <option value="cans">กระป๋องอะลูมิเนียมล้างสะอาด (฿40/กก.)</option>
+                <option value="ewaste">เฟืองจักรกลและขยะ E-Waste (฿80/กก.)</option>
+              </select>
+            </div>
+
+            <div class="form-row-2">
+              <div class="form-group">
+                <label for="sellWeightKg">น้ำหนักโดยประมาณ (กก.) *</label>
+                <input type="number" id="sellWeightKg" value="5" min="0.5" step="0.5" required>
+              </div>
+
+              <div class="form-group">
+                <label for="sellCollectorName">ชื่อผู้เก็บขยะ / กลุ่มอาสา *</label>
+                <input type="text" id="sellCollectorName" placeholder="เช่น คุณสมชาย หาดบางแสน" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="sellLocation">พิกัดที่เก็บขยะ (Location) *</label>
+              <input type="text" id="sellLocation" placeholder="เช่น หาดบางแสน ซอย 4, หาดวอนนภา, ชายหาดพัทยา" required>
+            </div>
+
+            <div class="form-group">
+              <label for="sellDropMethod">วิธีการส่งมอบขยะ *</label>
+              <select id="sellDropMethod" required>
+                <option value="bangsaen-hub">นำมาส่งที่จุด Drop-off ชายหาดบางแสน (ซอย 4)</option>
+                <option value="postal">ส่งพัสดุมายังคลัง RE:CRAFT Hub (สมุทรปราการ)</option>
+                <option value="pickup">นัดหมายให้ทีมงานไปรับ (น้ำหนัก 20 กก. ขึ้นไป)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Column 2: Payout Calculator & Bank Info -->
+          <div class="sell-col">
+            <div class="payout-calc-card">
+              <span class="calc-label">ยอดเงินที่คุณจะได้รับโดยประมาณ</span>
+              <div class="payout-big-amount" id="payoutCalcAmount">฿225</div>
+              <div class="payout-bonus-box">
+                <span class="bonus-tag">+15% โบนัส</span>
+                <span>หากเลือกรับเป็น Circular Credit เพื่อซื้อสินค้าในเว็บ รับทันที: <strong
+                    id="payoutCreditAmount">฿258</strong></span>
+              </div>
+            </div>
+
+            <div class="form-group" style="margin-top:16px;">
+              <label>รูปแบบการรับเงิน *</label>
+              <div class="payout-type-radios">
+                <label class="radio-chip">
+                  <input type="radio" name="payoutType" value="cash" checked id="radioPayoutCash">
+                  <span>โอนเงินสด (พร้อมเพย์/บัญชีธนาคาร)</span>
+                </label>
+                <label class="radio-chip">
+                  <input type="radio" name="payoutType" value="credit" id="radioPayoutCredit">
+                  <span>รับเป็น Circular Credits (+15%)</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group" id="bankInfoGroup">
+              <label for="sellPromptPay">เบอร์พร้อมเพย์ หรือ เลขบัญชีธนาคาร *</label>
+              <input type="text" id="sellPromptPay" placeholder="เช่น 089-XXX-XXXX หรือ กสิกรไทย 123-X-XXXXX-X"
+                required>
+            </div>
+
+            <div class="form-group">
+              <label for="sellNotes">หมายเหตุ / เรื่องราวการเก็บขยะครั้งนี้</label>
+              <textarea id="sellNotes" rows="2"
+                placeholder="เช่น เก็บกู้จากแนวโขดหินตอนน้ำลง ล้างคราบทรายออกแล้ว 1 รอบ..."></textarea>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="sell-waste-footer">
+          <button type="button" class="btn btn-secondary" id="cancelSellWasteBtn">ยกเลิก</button>
+          <button type="submit" class="btn btn-primary btn-submit-sell" id="submitSellWasteBtn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>ส่งรายการขายขยะ & รอรับเงิน</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- WASTE SUPPLY HUB MODAL -->
+  <div class="supply-modal-backdrop" id="supplyModal">
+    <div class="supply-modal-dialog">
+      <div class="supply-modal-header">
+        <div>
+          <div class="supply-tag">CIRCULAR MATERIAL DEPOT</div>
+          <h2>คลังวัตถุดิบขยะคัดแยก (RE:CRAFT Waste Supply Hub)</h2>
+          <p>ขยะที่ประชาชนและอาสาสมัครไปเก็บกู้และเราทำความสะอาดแล้ว สั่งรับไปทำตามพิมพ์เขียว
+            แล้วนำกลับมาโพสต์ขายบนเว็บได้ทันที!</p>
+        </div>
+        <button class="modal-close-btn" id="closeSupplyModalBtn">&times;</button>
+      </div>
+
+      <!-- Profit Calculator Banner -->
+      <div class="profit-formula-banner">
+        <div class="formula-col">
+          <span class="formula-label">1. สั่งรับวัตถุดิบขยะ</span>
+          <strong>ต้นทุนต่ำเพียง ฿89 - ฿240</strong>
+        </div>
+        <div class="formula-op">+</div>
+        <div class="formula-col">
+          <span class="formula-label">2. ทำตามพิมพ์เขียว (Blueprint)</span>
+          <strong>ใช้เวลา 15 - 30 นาที</strong>
+        </div>
+        <div class="formula-op">=</div>
+        <div class="formula-col highlight">
+          <span class="formula-label">3. นำกลับมาโพสต์ขาย</span>
+          <strong>สร้างรายได้ ฿650 - ฿2,200 (กำไร 500%+)</strong>
+        </div>
+      </div>
+
+      <!-- Supply Kits Grid -->
+      <div class="supply-kits-grid" id="supplyKitsGrid">
+        <!-- Injected via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Nike-Style Multi-Angle Product Detail Modal -->
+  <div class="detail-modal-backdrop" id="detailModal">
+    <div class="detail-modal-dialog">
+      <button class="modal-close-btn" id="closeDetailModalBtn" title="ปิดหน้าต่าง">&times;</button>
+
+      <div class="product-detail-layout">
+        <div class="detail-gallery-column">
+          <div class="gallery-vertical-thumbs" id="verticalThumbsList"></div>
+        </div>
+
+        <div class="detail-viewer-column">
+          <div class="main-viewer-card">
+            <div class="angle-indicator-badge" id="angleBadge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+              </svg>
+              <span id="currentAngleText">มุมมองด้านหน้า (Front View)</span>
+            </div>
+
+            <div class="viewer-viewport" id="viewerViewport">
+              <button class="viewer-nav-btn prev-angle-btn" id="prevAngleBtn" title="มุมมองก่อนหน้า (ลูกศรซ้าย)">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+              </button>
+              <img src="" alt="Product View" class="viewer-main-img" id="viewerMainImg">
+              <button class="viewer-nav-btn next-angle-btn" id="nextAngleBtn" title="มุมมองถัดไป (ลูกศรขวา)">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </button>
+            </div>
+
+            <div class="viewer-controls">
+              <div class="angle-pills" id="anglePillsGroup"></div>
+              <div class="angle-gallery-footer">
+                <span class="angle-counter" id="angleCounterText">มุมมองที่ 1 จาก 4</span>
+                <span class="angle-keyboard-hint">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                    <path d="M6 8h.001M10 8h.001M14 8h.001M18 8h.001M8 12h.001M12 12h.001M16 12h.001M7 16h10"></path>
+                  </svg>
+                  กด ◀ ▶ เพื่อสลับมุมมอง
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="detail-info-column">
+          <div class="detail-header-meta">
+            <span class="meta-tag-category" id="modalCategory">เครื่องประดับ</span>
+            <span class="meta-tag-origin" id="modalOrigin">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              <span id="modalOriginText">หาดบางแสน จ.ชลบุรี</span>
+            </span>
+          </div>
+
+          <h1 class="detail-title" id="modalTitle">สร้อยคอ "หัวใจมหาสมุทรบางแสน"</h1>
+          <div class="artist-attribution">
+            <span>ผลงานโดย: </span>
+            <strong id="modalArtist">Studio Debris</strong>
+            <span class="verified-maker-badge" title="ศิลปินที่ผ่านการตรวจสอบ">✓ Verified Upcycler</span>
+          </div>
+
+          <div class="story-callout-box">
+            <div class="story-callout-header">
+              <span class="story-icon">🌊</span>
+              <span class="story-header-title">สตอรี่เรื่องราวจากกองขยะสู่ชิ้นงาน</span>
+            </div>
+            <p class="story-headline-quote" id="modalStoryQuote">
+              "ของไร้ค่าจากท้องทะเล สู่หัวใจโคตรเท่ที่ต้นคอ"
+            </p>
+            <p class="story-body-desc" id="modalStoryDesc">
+              คอลเลกชันนี้สร้างขึ้นจากการลงพื้นที่เก็บขยะบริเวณชายหาดบางแสน ชลบุรี
+              ขยะพลาสติกและเศษแก้วที่จมใต้ทรายถูกนำมาคัดแยก ล้างทำความสะอาด ขัดแต่งลวดลาย และหลอมเข้ากับเงินแท้ 925
+              รีไซเคิล เพื่อให้ขยะที่ทำลายสิ่งแวดล้อมกลายเป็นผลงานแฟชั่นเหนือกาลเวลา
+            </p>
+
+            <div class="materials-tags-list" id="modalMaterialsList"></div>
+          </div>
+
+          <div class="pricing-auction-card">
+            <div class="auction-mode-section" id="auctionModeSection">
+              <div class="auction-status-header">
+                <div class="auction-live-indicator">
+                  <span class="live-dot"></span>
+                  <span>กำลังเปิดประมูล (LIVE AUCTION)</span>
+                </div>
+                <div class="auction-countdown-badge">
+                  <span>เหลือเวลา: </span>
+                  <strong id="modalCountdown">02:44:18</strong>
+                </div>
+              </div>
+
+              <div class="current-bid-display">
+                <div class="bid-title-wrap">
+                  <span class="label">ราคาประมูลปัจจุบัน</span>
+                  <span class="bids-total-count" id="modalBidsCount">เคาะแล้ว 14 ครั้ง</span>
+                </div>
+                <div class="bid-large-amount" id="modalCurrentBid">฿2,850</div>
+                <div class="bid-step-hint">ขั้นต่ำในการเสนอราคาครั้งต่อไป: <span id="modalNextMinBid">฿2,900</span>
+                </div>
+              </div>
+
+              <div class="quick-bid-buttons">
+                <button class="btn-quick-bid" data-add="50">+฿50</button>
+                <button class="btn-quick-bid" data-add="100">+฿100</button>
+                <button class="btn-quick-bid" data-add="500">+฿500</button>
+                <button class="btn-quick-bid" data-add="1000">+฿1,000</button>
+              </div>
+
+              <form class="place-bid-form" id="placeBidForm">
+                <div class="bid-input-group">
+                  <span class="currency-prefix">฿</span>
+                  <input type="number" id="bidInputAmount" placeholder="2900" min="2900" step="50" required>
+                  <button type="submit" class="btn btn-bid-submit" id="submitBidBtn">
+                    เคาะประมูลเลย
+                  </button>
+                </div>
+              </form>
+
+              <div class="bid-history-drawer">
+                <div class="drawer-header" id="toggleBidHistoryBtn">
+                  <span>📋 ประวัติการเคาะราคาล่าสุด</span>
+                  <span class="toggle-arrow">&#9662;</span>
+                </div>
+                <div class="drawer-body" id="bidHistoryList"></div>
+              </div>
+            </div>
+
+            <div class="direct-buy-section" id="directBuySection" style="display: none;">
+              <div class="direct-price-wrap">
+                <span class="label">ราคาขายตรง (Fixed Price)</span>
+                <div class="direct-large-amount" id="modalDirectPrice">฿1,490</div>
+                <span class="stock-badge">✓ พร้อมส่ง มีเพียง 1 ชิ้นในโลก</span>
+              </div>
+              <button class="btn btn-buy-now" id="buyNowBtn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="9" cy="21" r="1"></circle>
+                  <circle cx="20" cy="21" r="1"></circle>
+                  <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                </svg>
+                <span>สั่งซื้อชิ้นนี้ทันที</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="specs-accordion">
+            <div class="spec-row">
+              <span class="spec-label">ขนาดและน้ำหนัก:</span>
+              <span class="spec-value" id="modalSpecsDimension">ยาว 50 ซม. / จี้ขนาด 3.2 x 2.4 ซม.</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">การทำความสะอาด & รับประกัน:</span>
+              <span class="spec-value">ผ่านการฆ่าเชื้อด้วย UV และการเคลือบซิลเวอร์การันตีตลอดชีพ</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">การจัดส่ง:</span>
+              <span class="spec-value">จัดส่งฟรี EMS พร้อมกล่องกระดาษสาคราฟต์รีไซเคิล 100%</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Post Item Modal -->
+  <div class="post-modal-backdrop" id="postModal">
+    <div class="post-modal-dialog">
+      <div class="post-modal-header">
+        <div class="post-header-titles">
+          <h2>ลงขายสินค้าอัพไซเคิลชิ้นใหม่</h2>
+          <p>เปลี่ยนขยะและวัสดุเหลือใช้ให้มีเรื่องราวและส่งต่อให้ผู้สะสม (จะถูกส่งเข้าห้องตรวจหลังบ้าน)</p>
+        </div>
+        <button class="modal-close-btn" id="closePostModalBtn">&times;</button>
+      </div>
+
+      <form id="postItemForm" class="post-form">
+        <div class="form-grid">
+          <div class="form-col">
+            <div class="form-group">
+              <label for="postTitle">ชื่อสินค้า *</label>
+              <input type="text" id="postTitle" placeholder="เช่น สร้อยคอหัวใจมหาสมุทรบางแสน / แว่นกันแดดฝาขวดน้ำ"
+                required>
+            </div>
+
+            <div class="form-row-2">
+              <div class="form-group">
+                <label for="postCategory">หมวดหมู่ *</label>
+                <select id="postCategory" required>
+                  <option value="jewelry">สร้อยคอ & เครื่องประดับ (Jewelry)</option>
+                  <option value="fashion">แว่นตา & แฟชั่นสตรีท (Fashion)</option>
+                  <option value="collectibles">ของสะสม & หุ่นกล (Collectibles)</option>
+                  <option value="decor">ของแต่งบ้าน & นาฬิกา (Home Decor)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="postArtist">ชื่อศิลปิน / ผู้สร้าง *</label>
+                <input type="text" id="postArtist" placeholder="เช่น Studio Debris" required>
+              </div>
+            </div>
+
+            <div class="form-section-title">
+              <span>🌿 ข้อมูลที่มาของขยะ & สตอรี่</span>
+            </div>
+
+            <div class="form-group">
+              <label for="postOrigin">แหล่งที่มาของขยะ (Location) *</label>
+              <input type="text" id="postOrigin" placeholder="เช่น หาดบางแสน จ.ชลบุรี, ชายหาดพัทยา, โรงงานสมุทรปราการ"
+                required>
+            </div>
+
+            <div class="form-group">
+              <div class="label-with-tool">
+                <label for="postStoryQuote">คำโปรยสตอรี่โดนใจ (Catchphrase) *</label>
+                <button type="button" class="btn-text-magic" id="generateStoryBtn"
+                  title="ใช้ระบบช่วยแต่งคำโปรยอัตโนมัติ">
+                  ✨ เสกคำโปรยให้อัตโนมัติ
+                </button>
+              </div>
+              <input type="text" id="postStoryQuote" placeholder="เช่น 'ของไร้ค่าจากท้องทะเล สู่หัวใจโคตรเท่ที่ต้นคอ'"
+                required>
+              <small class="form-help">ประโยคสั้นที่จะแสดงบนการ์ดสินค้า
+                เพื่อเล่าเรื่องราวความเท่ของการชุบชีวิตขยะ</small>
+            </div>
+
+            <div class="form-group">
+              <label for="postStoryDesc">เรื่องราวและกระบวนการสร้างสรรค์ *</label>
+              <textarea id="postStoryDesc" rows="3"
+                placeholder="เล่าเรื่องราวการพบขยะชิ้นนี้ กระบวนการล้าง ขัด หลอม รวมทั้งแรงบันดาลใจ..."
+                required></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="postMaterials">ประเภทขยะที่นำมารีไซเคิล (คั่นด้วยจุลภาค) *</label>
+              <input type="text" id="postMaterials" placeholder="แก้วทะเล 40%, ซากแหอวน 30%, เงินรีไซเคิล 30%" required>
+            </div>
+          </div>
+
+          <div class="form-col">
+            <div class="form-section-title">
+              <span>💰 รูปแบบการจำหน่าย</span>
+            </div>
+
+            <div class="listing-type-toggle">
+              <label class="toggle-option">
+                <input type="radio" name="postSaleType" value="auction" checked id="radioAuction">
+                <span class="toggle-box">
+                  <strong>🔨 เปิดประมูล (Auction)</strong>
+                  <small>ให้ผู้ซื้อเคาะเสนอราคาแข่งกัน</small>
+                </span>
+              </label>
+
+              <label class="toggle-option">
+                <input type="radio" name="postSaleType" value="buynow" id="radioBuyNow">
+                <span class="toggle-box">
+                  <strong>🛒 ซื้อทันที (Fixed Price)</strong>
+                  <small>กำหนดราคาขายคงที่</small>
+                </span>
+              </label>
+            </div>
+
+            <div class="auction-form-fields" id="postAuctionFields">
+              <div class="form-row-2">
+                <div class="form-group">
+                  <label for="postStartBid">ราคาเริ่มต้น (บาท) *</label>
+                  <input type="number" id="postStartBid" value="990" min="100" step="50">
+                </div>
+                <div class="form-group">
+                  <label for="postDurationHours">ระยะเวลาประมูล *</label>
+                  <select id="postDurationHours">
+                    <option value="6">6 ชั่วโมง</option>
+                    <option value="12">12 ชั่วโมง</option>
+                    <option value="24" selected>24 ชั่วโมง (1 วัน)</option>
+                    <option value="72">72 ชั่วโมง (3 วัน)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="buynow-form-fields" id="postBuyNowFields" style="display: none;">
+              <div class="form-group">
+                <label for="postDirectPrice">ราคาขายทันที (บาท) *</label>
+                <input type="number" id="postDirectPrice" placeholder="1500" min="100">
+              </div>
+            </div>
+
+            <div class="form-section-title">
+              <span>📸 รูปภาพหลายมุมมอง (Multi-Angle Shots)</span>
+            </div>
+            <p class="form-help">เลือกชุดภาพถ่ายหลายมุมมองจากสตูดิโอ หรืออ้างอิงจากชิ้นงานต้นแบบ</p>
+
+            <div class="image-preset-picker">
+              <label class="preset-choice active">
+                <input type="radio" name="imagePreset" value="necklace" checked>
+                <img src="assets/necklace_front.jpg" alt="สร้อยคอ">
+                <span>เซ็ตสร้อยคอขยะทะเลบางแสน (หน้า + ข้าง 45° + มาโคร)</span>
+              </label>
+
+              <label class="preset-choice">
+                <input type="radio" name="imagePreset" value="sunglasses">
+                <img src="assets/sunglasses_front.jpg" alt="แว่นกันแดด">
+                <span>เซ็ตแว่นกันแดดพลาสติกทะเลบางแสน (หน้า + ด้านข้าง)</span>
+              </label>
+
+              <label class="preset-choice">
+                <input type="radio" name="imagePreset" value="clock">
+                <img src="assets/clock_front.jpg" alt="นาฬิกาจานเบรก">
+                <span>เซ็ตนาฬิกาตั้งโต๊ะจากจานเบรกและเฟืองทองเหลือง</span>
+              </label>
+
+              <label class="preset-choice">
+                <input type="radio" name="imagePreset" value="sculpture">
+                <img src="assets/sculpture_front.jpg" alt="หุ่นกล">
+                <span>เซ็ตหุ่นยนต์สะสมจากขยะจักรกล (หน้า + ข้าง)</span>
+              </label>
+
+              <label class="preset-choice">
+                <input type="radio" name="imagePreset" value="bracelet">
+                <img src="assets/bracelet_front.jpg" alt="กำไล">
+                <span>เซ็ตกำไลข้อมือจากเศษแหอวนทะเล</span>
+              </label>
+
+              <label class="preset-choice">
+                <input type="radio" name="imagePreset" value="lamp">
+                <img src="assets/lamp_front.jpg" alt="โคมไฟ">
+                <span>เซ็ตโคมไฟจากเศษแก้วทะเลบางแสน</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="post-form-footer">
+          <button type="button" class="btn btn-secondary" id="cancelPostBtn">ยกเลิก</button>
+          <button type="submit" class="btn btn-primary btn-submit-post" id="submitPostBtn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>ยืนยันการลงขายสินค้าทันที</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ADMIN STUDIO BACKEND MODAL -->
+  <div class="admin-modal-backdrop" id="adminModal">
+    <div class="admin-modal-dialog">
+      <div class="admin-modal-header">
+        <div class="admin-header-title">
+          <div class="admin-tag">ADMINISTRATION CONSOLE</div>
+          <h2>RE:CRAFT ระบบหลังบ้าน & ห้องควบคุมมาร์เก็ตเพลส</h2>
+          <p>ตรวจสอบความถูกต้องของขยะ อนุมัติสินค้าใหม่ รับซื้อขยะจากลูกค้า และควบคุมสต็อก</p>
+        </div>
+        <button class="modal-close-btn" id="closeAdminModalBtn">&times;</button>
+      </div>
+
+      <div class="admin-tabs-bar">
+        <button class="admin-tab active" data-tab="pending">
+          <span>⏳ สินค้ารอการอนุมัติ (Pending Queue)</span>
+          <span class="admin-tab-count" id="adminPendingBadge">2</span>
+        </button>
+        <button class="admin-tab" data-tab="intake">
+          <span>📥 ขยะที่ลูกค้าส่งขาย (Intake Queue)</span>
+          <span class="admin-tab-count" id="adminIntakeBadge" style="background:#0d9488;">2</span>
+        </button>
+        <button class="admin-tab" data-tab="catalog">
+          <span>📦 จัดการสินค้าทั้งหมดในระบบ (All Catalog)</span>
+        </button>
+        <button class="admin-tab" data-tab="supply">
+          <span>♻️ คลังสต็อกขยะที่ไปรับมา (Raw Waste Stock)</span>
+        </button>
+        <button class="admin-tab" data-tab="metrics">
+          <span>📊 แดชบอร์ดสิ่งแวดล้อม & สถิติ (Eco Metrics)</span>
+        </button>
+      </div>
+
+      <!-- Tab 1: Pending Products -->
+      <div class="admin-tab-panel active" id="tabPanelPending">
+        <div class="admin-panel-intro">
+          <div>
+            <h3>รายการสินค้ารอการตรวจสอบ</h3>
+            <p>ตรวจสอบว่าแหล่งที่มาของขยะมีความน่าเชื่อถือ สตอรี่ตรงตามข้อกำหนด
+              และภาพถ่ายมีมุมมองครบถ้วนก่อนขึ้นหน้าร้าน</p>
+          </div>
+          <button class="btn btn-secondary btn-sm" id="quickApproveAllBtn">⚡ อนุมัติทั้งหมดในคลิกเดียว</button>
+        </div>
+        <div class="pending-cards-list" id="pendingCardsList"></div>
+      </div>
+
+      <!-- Tab 2: Customer Waste Intake Queue (NEW) -->
+      <div class="admin-tab-panel" id="tabPanelIntake">
+        <div class="admin-panel-intro">
+          <div>
+            <h3>รายการขยะที่ลูกค้านำมาส่งขาย (Drop-off Submissions)</h3>
+            <p>ตรวจรับขยะที่ประชาชนเก็บมา อนุมัติการโอนเงิน และนำขยะเข้าสู่คลังวัตถุดิบเพื่อให้ช่างนำไปทำขายต่อ</p>
+          </div>
+        </div>
+        <div class="intake-cards-list" id="intakeCardsList">
+          <!-- Injected via JS -->
+        </div>
+      </div>
+
+      <!-- Tab 3: Catalog Management -->
+      <div class="admin-tab-panel" id="tabPanelCatalog">
+        <div class="admin-panel-intro">
+          <div>
+            <h3>สินค้าที่กำลังเผยแพร่อยู่ในระบบ</h3>
+            <p>ควบคุมสถานะสินค้า และทดสอบระบบการเคาะราคาของลูกค้า</p>
+          </div>
+          <button class="btn btn-primary btn-sm" id="simulateBuyerBidBtn">
+            🤖 ทดสอบจำลองลูกค้าเคาะประมูลสด (+ เคาะราคา)
+          </button>
+        </div>
+
+        <div class="admin-catalog-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>รูปภาพ</th>
+                <th>ชื่อสินค้า & ศิลปิน</th>
+                <th>แหล่งขยะ</th>
+                <th>รูปแบบการขาย</th>
+                <th>ราคา / เคาะล่าสุด</th>
+                <th>สถานะ</th>
+                <th>การจัดการ</th>
+              </tr>
+            </thead>
+            <tbody id="adminCatalogTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Tab 4: Waste Supply Inventory -->
+      <div class="admin-tab-panel" id="tabPanelSupply">
+        <div class="admin-panel-intro">
+          <div>
+            <h3>รายการขยะคัดแยกและสต็อกวัตถุดิบที่เราไปรับมา</h3>
+            <p>บันทึกการรับขยะจากหาดบางแสน ชุมชน และโรงงาน เพื่อส่งต่อให้สมาชิกรับไปทำตามพิมพ์เขียว</p>
+          </div>
+          <button class="btn btn-primary btn-sm" id="addNewWasteBatchBtn">
+            + บันทึกรับขยะล็อตใหม่เข้าคลัง
+          </button>
+        </div>
+
+        <div class="admin-catalog-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>ชุดวัตถุดิบ</th>
+                <th>แหล่งที่มาขยะ</th>
+                <th>สต็อกคงเหลือ</th>
+                <th>ราคาให้รับไปทำ</th>
+                <th>พิมพ์เขียวที่รองรับ</th>
+                <th>กำไรที่คนทำจะได้</th>
+              </tr>
+            </thead>
+            <tbody id="adminSupplyTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Tab 5: Metrics -->
+      <div class="admin-tab-panel" id="tabPanelMetrics">
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <span class="metric-title">ขยะที่ถูกกู้คืนและนำมาแปรรูป</span>
+            <span class="metric-val" id="metricTotalWeight">3,840 กก.</span>
+            <span class="metric-sub">เทียบเท่าการเก็บขยะจากหาดบางแสน 120 เที่ยว</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-title">มูลค่าการประมูลหมุนเวียน (GMV)</span>
+            <span class="metric-val">฿148,250</span>
+            <span class="metric-sub">สร้างรายได้คืนสู่ชุมชนเก็บขยะและศิลปิน 85%</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-title">อัตราการจบประมูลสำเร็จ</span>
+            <span class="metric-val">96.4%</span>
+            <span class="metric-sub">เฉลี่ย 16.2 เคาะต่อชิ้นงาน</span>
+          </div>
+          <div class="metric-card">
+            <span class="metric-title">การลดก๊าซเรือนกระจกสะสม</span>
+            <span class="metric-val">8.4 tCO2e</span>
+            <span class="metric-sub">ได้รับการรับรองตามมาตรฐาน Circular Economy</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BLUEPRINT STUDIO MODAL -->
+  <div class="blueprint-modal-backdrop" id="blueprintModal">
+    <div class="blueprint-modal-dialog">
+      <div class="blueprint-modal-header">
+        <div class="blueprint-header-title">
+          <div class="blueprint-badge">FOR EVERYONE WITH ZERO ART BACKGROUND</div>
+          <h2>RE:CRAFT พิมพ์เขียวอัพไซเคิล (Blueprint Studio)</h2>
+          <p>คู่มือสูตรแปลงขยะรอบตัวเป็นสินค้าลักชัวรี แม้ไม่มีหัวศิลป์ก็หยิบมาทำขายและสร้างรายได้ได้ทันที</p>
+        </div>
+        <button class="modal-close-btn" id="closeBlueprintModalBtn">&times;</button>
+      </div>
+
+      <div class="ai-story-banner">
+        <div class="ai-story-content">
+          <span class="ai-icon">✨</span>
+          <div>
+            <h4>ระบบ AI Story Generator ช่วยคิดคำโปรยสำหรับคนคิดสตอรี่ไม่ออก</h4>
+            <p>เพียงพิมพ์ชนิดขยะที่คุณเก็บได้ เช่น "ฝาขวดน้ำบางแสน" ระบบจะเสกคำโปรยเท่ๆ ให้ทันที</p>
+          </div>
+        </div>
+        <div class="ai-input-inline">
+          <input type="text" id="aiWasteInput" placeholder="ระบุขยะ เช่น ฝาขวดน้ำบางแสน, สายไฟเก่า, ขวดแก้วแตก">
+          <button class="btn btn-primary btn-sm" id="aiGenerateStoryBtn">เสกคำโปรย</button>
+          <button class="btn btn-ghost btn-sm" id="blueprintToScannerBtn"
+            style="border: 1.5px solid rgba(45,212,191,0.5); color: #0f766e; font-weight: 700; background: rgba(45,212,191,0.1); border-radius: var(--radius-full); padding: 8px 14px; white-space: nowrap;">
+            📷 สแกนขยะจริงด้วยกล้อง AI
+          </button>
+        </div>
+        <div class="ai-result-box" id="aiResultBox" style="display: none;">
+          <span class="ai-result-quote" id="aiResultText"></span>
+          <button class="btn btn-secondary btn-sm" id="aiCopyStoryBtn">ใช้คำโปรยนี้ทันที &rarr;</button>
+        </div>
+      </div>
+
+      <div class="blueprint-recipes-grid" id="blueprintRecipesGrid"></div>
+    </div>
+  </div>
+
+  <!-- FLOATING AI VISION SCANNER DOCK (BOTTOM-LEFT) -->
+  <aside class="ai-scanner-dock" id="aiScannerDock" aria-label="เครื่องมือสแกนขยะด้วย AI">
+    <button class="btn-ai-scanner-trigger" id="openAiScannerBtn"
+      title="เปิดระบบกล้อง AI สแกนวิเคราะห์ขยะและพิมพ์เขียว (กด Alt + S ได้)">
+      <div class="scanner-trigger-lens">
+        <span class="lens-radar"></span>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+          <circle cx="12" cy="13" r="4" />
+        </svg>
+      </div>
+      <div class="scanner-trigger-info">
+        <div class="scanner-trigger-badge">
+          <span class="pulse-dot"></span>
+          <span>AI VISION STUDIO</span>
+        </div>
+        <div class="scanner-trigger-title">สแกนขยะ & ค้นหาไอเดีย</div>
+      </div>
+      <span class="scanner-trigger-kbd">Alt+S</span>
+    </button>
+  </aside>
+
+  <!-- LARGE AI VISION SCANNER & BLUEPRINT SYNTHESIS MODAL -->
+  <!-- LARGE AI VISION SCANNER & BLUEPRINT SYNTHESIS MODAL -->
+  <div class="ai-scanner-modal-backdrop" id="aiScannerModal" role="dialog" aria-modal="true">
+    <div class="ai-scanner-modal-dialog">
+      <!-- Header -->
+      <div class="ai-scanner-modal-header">
+        <div class="ai-scanner-title-group">
+          <div class="ai-scanner-super-badge">
+            <span class="pulse-dot"></span>
+            <span>MODEL: YOLOv9-CircularWaste [Fine-Tuned]</span>
+            <span class="badge-sep">•</span>
+            <span>mAP@0.5: 98.6%</span>
+            <span class="badge-sep">•</span>
+            <span>CIRCULAR COCKPIT</span>
+          </div>
+          <h2>📷 RE:CRAFT AI Vision Waste Scanner</h2>
+          <p>ส่องกล้องสแกนเศษขยะรอบตัว วิเคราะห์โครงสร้างวัตถุดิบด้วยโมเดล Fine-Tuned (แยกซองขนม, ขวดน้ำ PET, ฝาขวด, แก้วทะเล) พร้อมจับคู่พิมพ์เขียวทันที</p>
+        </div>
+        <div class="ai-scanner-header-actions">
+          <button class="btn-scanner-tab active" id="scannerTabAnalysisBtn">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path
+                d="m21.64 3.64-1.28-1.28a1.21 1.21 0 0 0-1.72 0L2.36 18.64a1.21 1.21 0 0 0 0 1.72l1.28 1.28a1.2 1.2 0 0 0 1.72 0L21.64 5.36a1.2 1.2 0 0 0 0-1.72Z" />
+              <path d="m14 7 3 3" />
+            </svg>
+            <span>วิเคราะห์ & พิมพ์เขียว</span>
+          </button>
+          <button class="btn-scanner-tab" id="scannerTabModelBtn">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 3v18h18" />
+              <path d="m19 9-5 5-4-4-3 3" />
+            </svg>
+            <span>โมเดล Fine-Tuning</span>
+          </button>
+          <button class="btn-scanner-tab" id="scannerTabHistoryBtn">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 6 12 12 16 14" />
+            </svg>
+            <span>ประวัติการสแกน</span>
+            <span class="badge-count" id="scannerHistoryCountBadge">0</span>
+          </button>
+          <button class="modal-close-btn" id="closeAiScannerModalBtn" title="ปิดหน้าต่างสแกนเนอร์">&times;</button>
+        </div>
+      </div>
+
+      <!-- Cockpit Body (Dual-Pane Grid) -->
+      <div class="ai-scanner-cockpit-body">
+        <!-- LEFT PANE: Camera & Viewfinder Deck -->
+        <div class="scanner-camera-deck">
+          <!-- Viewfinder Frame -->
+          <div class="scanner-viewfinder-frame" id="scannerViewfinder">
+            <!-- Video & Canvas Element -->
+            <video id="aiScannerVideo" autoplay playsinline muted></video>
+            <canvas id="aiScannerCanvas" style="display: none;"></canvas>
+            <img id="aiScannerImagePreview" class="scanner-preview-img" alt="ภาพตัวอย่างที่สแกน"
+              style="display: none;" />
+
+            <!-- HUD Elements -->
+            <div class="viewfinder-hud-overlay">
+              <div class="hud-corner hud-tl"></div>
+              <div class="hud-corner hud-tr"></div>
+              <div class="hud-corner hud-bl"></div>
+              <div class="hud-corner hud-br"></div>
+              <div class="hud-crosshair"></div>
+              <div class="hud-reticle-circle"></div>
+
+              <!-- Animated Laser Scan Sweep Line -->
+              <div class="hud-laser-sweep" id="hudLaserSweep"></div>
+
+              <!-- Live Status Tag -->
+              <div class="hud-status-badge" id="hudStatusBadge">
+                <span class="status-indicator-dot"></span>
+                <span id="hudStatusText">กล้องพร้อมทำงาน (READY)</span>
+              </div>
+
+              <!-- Simulated Object Detection Box -->
+              <div class="hud-detection-box" id="hudDetectionBox" style="display: none;">
+                <span class="detection-tag" id="hudDetectionTag">MATERIAL DETECTED</span>
+                <span class="detection-confidence" id="hudDetectionConf">98.4%</span>
+              </div>
+
+              <!-- Dynamic Multi-Object Bounding Boxes (Fine-Tuned Detection) -->
+              <div class="hud-multi-detection-layer" id="hudMultiDetectionLayer"></div>
+            </div>
+          </div>
+
+          <!-- Camera Controller Toolbar -->
+          <div class="scanner-controls-toolbar">
+            <button class="btn btn-scanner-scan" id="aiTriggerScanBtn"
+              title="กดเพื่อเริ่มสแกนวัตถุดิบและวิเคราะห์ด้วย AI">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <circle cx="12" cy="12" r="3" />
+                <circle cx="12" cy="12" r="9" />
+              </svg>
+              <span>⚡ สแกน & วิเคราะห์ด้วย AI ทันที</span>
+            </button>
+            <button class="btn btn-scanner-secondary" id="aiToggleCamBtn" title="เปิด/ปิด กล้องสตรีมสด">
+              <span id="aiToggleCamIcon">📷</span>
+              <span id="aiToggleCamText">เปิด/ปิดกล้อง</span>
+            </button>
+            <button class="btn btn-scanner-secondary" id="aiUploadImgBtn" title="อัปโหลดภาพขยะที่มีอยู่ในเครื่อง">
+              📁 อัปโหลดรูป
+            </button>
+            <input type="file" id="aiScannerFileInput" accept="image/*" style="display: none;" />
+          </div>
+
+          <!-- Quick Test Presets (ตัวอย่างขยะทดสอบด่วน) -->
+          <div class="scanner-quick-presets">
+            <span class="preset-label">⚡ ตัวอย่างขยะริมหาดทดสอบด่วน (Fine-Tuned Classes):</span>
+            <div class="preset-pill-list">
+              <button class="scanner-preset-pill active" data-preset="mixed">🔍 ขยะรวม 3 ชิ้น (แยกซอง/ขวด/ฝา)</button>
+              <button class="scanner-preset-pill" data-preset="snackfoil">🍫 ซองขนมกรุบกรอบ (Foil)</button>
+              <button class="scanner-preset-pill" data-preset="petbottle">🍶 ขวดน้ำดื่มใส PET #1</button>
+              <button class="scanner-preset-pill" data-preset="hdpe">🧴 ฝาขวดน้ำ HDPE</button>
+              <button class="scanner-preset-pill" data-preset="seaglass">🌊 แก้วทะเลบางแสน</button>
+              <button class="scanner-preset-pill" data-preset="ghostnet">🪢 เชือกอวนประมง</button>
+              <button class="scanner-preset-pill" data-preset="cans">🥫 กระป๋องอะลูมิเนียม</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT PANE: AI Intelligence Deck -->
+        <div class="scanner-intelligence-deck">
+          <!-- View 1: Analysis & Blueprint Panel -->
+          <div class="scanner-panel-view active" id="scannerAnalysisView">
+            <!-- Dynamic State Container (Idle, Scanning, or Result) -->
+            <div id="aiAnalysisDynamicContent">
+              <!-- Injected dynamically via JS -->
+            </div>
+          </div>
+
+          <!-- View 2: Model Fine-Tuning Benchmarks Panel -->
+          <div class="scanner-panel-view" id="scannerModelView" style="display: none;">
+            <!-- Injected dynamically via JS -->
+          </div>
+
+          <!-- View 3: History Log Panel -->
+          <div class="scanner-panel-view" id="scannerHistoryView" style="display: none;">
+            <div class="scanner-history-header">
+              <h3>📜 ประวัติการสแกนและการค้นพบไอเดีย</h3>
+              <button class="btn btn-sm btn-ghost" id="clearScannerHistoryBtn">ล้างประวัติ</button>
+            </div>
+            <div class="scanner-history-list" id="scannerHistoryList">
+              <!-- Injected via JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-stack" id="toastStack"></div>
+
+  <!-- Footer -->
+  <footer class="main-footer" id="about-story">
+    <div class="container footer-grid">
+      <div class="footer-brand-col">
+        <div class="brand-logo footer-logo">
+          <span class="brand-name">RE:CRAFT</span>
+          <span class="brand-tag">CIRCULAR LUXURY</span>
+        </div>
+        <p class="footer-desc">
+          เปลี่ยนขยะที่ถูกทอดทิ้งให้กลายเป็นงานศิลปะลักชัวรีและเครื่องประดับที่ทุกคนภาคภูมิใจ
+          ขับเคลื่อนระบบเศรษฐกิจหมุนเวียน (Circular Economy) จากหาดบางแสนสู่ผู้คนทั่วโลก
+        </p>
+      </div>
+
+      <div class="footer-links-col">
+        <h4>หมวดหมู่สินค้า</h4>
+        <ul>
+          <li><a href="#" class="footer-cat-link" data-category="jewelry">สร้อยคอ & จี้มินิมอล</a></li>
+          <li><a href="#" class="footer-cat-link" data-category="fashion">แว่นตากันแดดรีไซเคิล</a></li>
+          <li><a href="#" class="footer-cat-link" data-category="collectibles">หุ่นกล & ของสะสม</a></li>
+          <li><a href="#" class="footer-cat-link" data-category="decor">ของแต่งบ้าน & นาฬิกาจานเบรก</a></li>
+          <li><a href="#" class="footer-cat-link" data-category="bangsaen">คอลเลกชันขยะหาดบางแสน</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links-col">
+        <h4>ระบบชุมชน & นักสร้างสรรค์</h4>
+        <ul>
+          <li><a href="#" id="footerOpenSellWaste">ส่งขยะขายให้เรา (ได้เงินทันที)</a></li>
+          <li><a href="#" id="footerOpenSupply">คลังวัตถุดิบขยะคัดแยก (รับไปทำขาย)</a></li>
+          <li><a href="#" id="footerOpenBlueprint">ดูพิมพ์เขียวอัพไซเคิล (Blueprints)</a></li>
+          <li><a href="#" id="footerOpenPost">ลงขายชิ้นงานอัพไซเคิล</a></li>
+          <li><a href="#" id="footerOpenAdmin">เข้าระบบหลังบ้าน (Admin Studio)</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links-col">
+        <h4>พิกัดภารกิจหลัก</h4>
+        <div class="location-badge">
+          <span>📍 บางแสน, ชลบุรี</span>
+          <p>จุดรับซื้อและ Drop-off ขยะชายหาดทุกวันเสาร์-อาทิตย์ ร่วมกับชุมชนบางแสน</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>&copy; 2026 RE:CRAFT Inc. มาร์เก็ตเพลสสินค้าอัพไซเคิลไทย. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
