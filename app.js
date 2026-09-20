@@ -480,6 +480,7 @@ const state = {
   activeAngleIndex: 0,
   userBidsCount: 2,
   wishlist: new Set([1]),
+  cart: [],
   scanHistory: [],
   activeScannerPreset: 'seaglass',
   scannerStream: null,
@@ -622,6 +623,49 @@ const bidInputAmount = document.getElementById('bidInputAmount');
 const placeBidForm = document.getElementById('placeBidForm');
 const bidHistoryList = document.getElementById('bidHistoryList');
 const toggleBidHistoryBtn = document.getElementById('toggleBidHistoryBtn');
+const addToCartDetailBtn = document.getElementById('addToCartDetailBtn');
+const buyNowBtn = document.getElementById('buyNowBtn');
+
+// Shopping Cart & Checkout Elements
+const headerCartBtn = document.getElementById('headerCartBtn');
+const cartCountBadge = document.getElementById('cartCountBadge');
+const mobileDrawerCartBtn = document.getElementById('mobileDrawerCartBtn');
+const mobileCartCountBadge = document.getElementById('mobileCartCountBadge');
+const cartDrawerBackdrop = document.getElementById('cartDrawerBackdrop');
+const cartDrawer = document.getElementById('cartDrawer');
+const closeCartDrawerBtn = document.getElementById('closeCartDrawerBtn');
+const cartHeaderCountText = document.getElementById('cartHeaderCountText');
+const cartEcoBanner = document.getElementById('cartEcoBanner');
+const cartEcoWeightText = document.getElementById('cartEcoWeightText');
+const cartEmptyState = document.getElementById('cartEmptyState');
+const cartItemsList = document.getElementById('cartItemsList');
+const cartDrawerFooter = document.getElementById('cartDrawerFooter');
+const cartSubtotalText = document.getElementById('cartSubtotalText');
+const cartShippingText = document.getElementById('cartShippingText');
+const cartShippingPromoBar = document.getElementById('cartShippingPromoBar');
+const cartShippingPromoText = document.getElementById('cartShippingPromoText');
+const cartTotalText = document.getElementById('cartTotalText');
+const cartCheckoutBtn = document.getElementById('cartCheckoutBtn');
+const clearCartBtn = document.getElementById('clearCartBtn');
+const cartExploreBtn = document.getElementById('cartExploreBtn');
+
+// Checkout Modal Elements
+const checkoutModal = document.getElementById('checkoutModal');
+const closeCheckoutModalBtn = document.getElementById('closeCheckoutModalBtn');
+const checkoutFormView = document.getElementById('checkoutFormView');
+const checkoutForm = document.getElementById('checkoutForm');
+const checkoutItemsSummary = document.getElementById('checkoutItemsSummary');
+const checkoutSubtotal = document.getElementById('checkoutSubtotal');
+const checkoutShipping = document.getElementById('checkoutShipping');
+const checkoutGrandTotal = document.getElementById('checkoutGrandTotal');
+const promptpayPreviewBox = document.getElementById('promptpayPreviewBox');
+const confirmOrderBtn = document.getElementById('confirmOrderBtn');
+const orderSubmitTotal = document.getElementById('orderSubmitTotal');
+const orderSuccessView = document.getElementById('orderSuccessView');
+const successOrderId = document.getElementById('successOrderId');
+const successOrderDetailsList = document.getElementById('successOrderDetailsList');
+const successOrderTotal = document.getElementById('successOrderTotal');
+const successDoneBtn = document.getElementById('successDoneBtn');
 
 // Post Modal Elements
 const postModal = document.getElementById('postModal');
@@ -931,7 +975,13 @@ function renderCatalog() {
             ${item.saleType === 'auction' ? `
               <span class="card-bids-pill">เคาะแล้ว ${item.bidsCount} ครั้ง</span>
             ` : `
-              <span class="card-bids-pill" style="background:#d1fae5; color:#065f46;">พร้อมส่ง</span>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span class="card-bids-pill" style="background:#d1fae5; color:#065f46;">พร้อมส่ง</span>
+                <button class="btn-card-add-cart" onclick="quickAddToCart(event, ${item.id})" title="เพิ่มลงในตะกร้า">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                  <span>ใส่ตะกร้า</span>
+                </button>
+              </div>
             `}
           </div>
         </div>
@@ -941,7 +991,7 @@ function renderCatalog() {
 
   document.querySelectorAll('.product-card').forEach(card => {
     card.addEventListener('click', (e) => {
-      if (e.target.closest('.card-wishlist-toggle') || e.target.closest('.card-view-switcher')) return;
+      if (e.target.closest('.card-wishlist-toggle') || e.target.closest('.card-view-switcher') || e.target.closest('.btn-card-add-cart')) return;
       const pid = parseInt(card.getAttribute('data-product-id'), 10);
       openProductDetail(pid, e);
     });
@@ -1444,7 +1494,8 @@ window.orderSupplyKit = function(kitId) {
   renderSupplyKits();
   renderAdminSupplyTable();
 
-  showToast(`สั่งรับ "${kit.name}" สำเร็จ! เตรียมจัดส่งกล่องวัตถุดิบถึงคุณ พร้อมคู่มือพิมพ์เขียว 📦`);
+  window.addToCart(kitId, 1, 'kit');
+  showToast(`เพิ่ม "${kit.name}" ลงในตะกร้าสินค้าเรียบร้อย! 📦`);
 };
 
 window.viewKitBlueprint = function(bpId) {
@@ -2077,12 +2128,14 @@ document.getElementById('openHeroDetailBtn')?.addEventListener('click', (e) => {
 });
 
 // Backdrop click modal close
-[detailModal, postModal, adminModal, blueprintModal, supplyModal, sellWasteModal, zoneModal].forEach(modal => {
+[detailModal, postModal, adminModal, blueprintModal, supplyModal, sellWasteModal, zoneModal, checkoutModal].forEach(modal => {
   if (!modal) return;
   modal.addEventListener('click', (e) => {
     if (e.target === modal) {
       if (modal === detailModal) {
         closeProductDetail();
+      } else if (modal === checkoutModal) {
+        closeCheckoutModal();
       } else {
         modal.classList.remove('open');
         document.body.style.overflow = '';
@@ -2097,10 +2150,12 @@ closeDetailModalBtn.addEventListener('click', closeProductDetail);
 window.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
     closeMobileDrawer();
+    closeCartDrawer();
+    closeCheckoutModal();
     if (aiScannerModal && aiScannerModal.classList.contains('open')) {
       closeAiScannerModal();
     }
-    [detailModal, postModal, adminModal, blueprintModal, supplyModal, sellWasteModal, zoneModal, aiScannerModal].forEach(modal => {
+    [detailModal, postModal, adminModal, blueprintModal, supplyModal, sellWasteModal, zoneModal, aiScannerModal, checkoutModal].forEach(modal => {
       if (modal && modal.classList.contains('open')) {
         modal.classList.remove('open');
         document.body.style.overflow = '';
@@ -3203,6 +3258,10 @@ function initMobileDrawerEngine() {
     closeMobileDrawer();
     openAdminModal();
   });
+  mobileDrawerCartBtn?.addEventListener('click', () => {
+    closeMobileDrawer();
+    openCartDrawer();
+  });
   mobileDrawerBidsBtn?.addEventListener('click', () => {
     closeMobileDrawer();
     showToast('กำลังแสดงชิ้นงานที่คุณกำลังร่วมประมูล', 'auction');
@@ -3220,6 +3279,390 @@ function initMobileDrawerEngine() {
   });
 }
 
+// ==========================================================================
+// SHOPPING CART & CHECKOUT ENGINE
+// ==========================================================================
+function loadCartFromStorage() {
+  try {
+    const saved = localStorage.getItem('recraft_cart');
+    if (saved) {
+      state.cart = JSON.parse(saved);
+    } else {
+      // Default demo initial cart with 1 lovely item
+      state.cart = [
+        {
+          id: 'prod-1',
+          productId: 1,
+          type: 'product',
+          title: 'สร้อยคอ "หัวใจมหาสมุทรบางแสน"',
+          origin: 'หาดบางแสน จ.ชลบุรี',
+          price: 1490,
+          qty: 1,
+          thumb: 'assets/necklace_front.jpg',
+          weightKg: 0.35
+        }
+      ];
+    }
+  } catch (err) {
+    state.cart = [];
+  }
+}
+
+function saveCartToStorage() {
+  try {
+    localStorage.setItem('recraft_cart', JSON.stringify(state.cart));
+  } catch (err) {
+    console.error('Failed to save cart to localStorage', err);
+  }
+}
+
+function getCartCount() {
+  return state.cart.reduce((sum, item) => sum + item.qty, 0);
+}
+
+function getCartSubtotal() {
+  return state.cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+}
+
+function getCartShipping() {
+  const subtotal = getCartSubtotal();
+  if (subtotal === 0 || subtotal >= 1000) return 0;
+  return 50;
+}
+
+function getCartTotal() {
+  return getCartSubtotal() + getCartShipping();
+}
+
+function getCartEcoWeight() {
+  return state.cart.reduce((sum, item) => sum + ((item.weightKg || 0.4) * item.qty), 0);
+}
+
+function updateCartBadges() {
+  const count = getCartCount();
+  if (cartCountBadge) {
+    cartCountBadge.textContent = count;
+    cartCountBadge.classList.add('bump');
+    setTimeout(() => cartCountBadge.classList.remove('bump'), 300);
+  }
+  if (mobileCartCountBadge) {
+    mobileCartCountBadge.textContent = `${count} รายการ`;
+  }
+  if (cartHeaderCountText) {
+    cartHeaderCountText.textContent = `${count} รายการ`;
+  }
+}
+
+function renderCartUI() {
+  updateCartBadges();
+
+  if (state.cart.length === 0) {
+    if (cartEmptyState) cartEmptyState.style.display = 'flex';
+    if (cartItemsList) cartItemsList.style.display = 'none';
+    if (cartDrawerFooter) cartDrawerFooter.style.display = 'none';
+    if (cartEcoBanner) cartEcoBanner.style.display = 'none';
+    return;
+  }
+
+  if (cartEmptyState) cartEmptyState.style.display = 'none';
+  if (cartItemsList) cartItemsList.style.display = 'flex';
+  if (cartDrawerFooter) cartDrawerFooter.style.display = 'block';
+
+  // Eco impact banner
+  const totalWeight = getCartEcoWeight().toFixed(1);
+  if (cartEcoBanner && cartEcoWeightText) {
+    cartEcoBanner.style.display = 'flex';
+    cartEcoWeightText.textContent = `ช่วยกู้ขยะชายฝั่ง ${totalWeight} กก.`;
+  }
+
+  // Render Items List
+  if (cartItemsList) {
+    cartItemsList.innerHTML = state.cart.map(item => `
+      <div class="cart-item-card" data-cart-id="${item.id}">
+        <img src="${item.thumb}" alt="${item.title}" class="cart-item-thumb">
+        <div class="cart-item-info">
+          <div class="cart-item-top">
+            <div>
+              <h4 class="cart-item-title">${item.title}</h4>
+              <span class="cart-item-origin">📍 ${item.origin}</span>
+            </div>
+            <button class="cart-remove-item-btn" onclick="removeFromCart('${item.id}')" title="ลบออกจากตะกร้า">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="3 6 5 6 21 6"></polyline>
+                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+              </svg>
+            </button>
+          </div>
+
+          <div class="cart-item-bottom">
+            <span class="cart-item-price">${formatCurrency(item.price * item.qty)}</span>
+            <div class="cart-qty-ctrl">
+              <button class="cart-qty-btn" onclick="updateCartItemQty('${item.id}', -1)">-</button>
+              <span class="cart-qty-val">${item.qty}</span>
+              <button class="cart-qty-btn" onclick="updateCartItemQty('${item.id}', 1)">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // Summary
+  const subtotal = getCartSubtotal();
+  const shipping = getCartShipping();
+  const total = subtotal + shipping;
+
+  if (cartSubtotalText) cartSubtotalText.textContent = formatCurrency(subtotal);
+  if (cartShippingText) {
+    cartShippingText.textContent = shipping === 0 ? 'ฟรี (฿0)' : formatCurrency(shipping);
+    cartShippingText.className = shipping === 0 ? 'text-free' : '';
+  }
+  if (cartTotalText) cartTotalText.textContent = formatCurrency(total);
+
+  if (cartShippingPromoBar && cartShippingPromoText) {
+    if (subtotal >= 1000) {
+      cartShippingPromoBar.style.display = 'block';
+      cartShippingPromoBar.style.background = 'rgba(16, 185, 129, 0.12)';
+      cartShippingPromoBar.style.borderColor = 'rgba(16, 185, 129, 0.4)';
+      cartShippingPromoText.style.color = '#10b981';
+      cartShippingPromoText.innerHTML = '🎉 คุณได้รับสิทธิ์ <strong>จัดส่งฟรีทั่วประเทศ!</strong>';
+    } else {
+      cartShippingPromoBar.style.display = 'block';
+      cartShippingPromoBar.style.background = 'rgba(45, 212, 191, 0.08)';
+      cartShippingPromoBar.style.borderColor = 'rgba(45, 212, 191, 0.35)';
+      cartShippingPromoText.style.color = '#2dd4bf';
+      const needed = 1000 - subtotal;
+      cartShippingPromoText.innerHTML = `ช้อปอีก <strong>${formatCurrency(needed)}</strong> เพื่อรับสิทธิ์จัดส่งฟรี!`;
+    }
+  }
+}
+
+window.addToCart = function(productIdOrItem, qty = 1, type = 'product') {
+  let itemToAdd = null;
+
+  if (typeof productIdOrItem === 'object') {
+    itemToAdd = productIdOrItem;
+  } else if (type === 'product') {
+    const p = state.products.find(prod => prod.id === parseInt(productIdOrItem, 10));
+    if (!p) return;
+    const price = p.saleType === 'auction' ? p.currentBid : p.price;
+    itemToAdd = {
+      id: `prod-${p.id}`,
+      productId: p.id,
+      type: 'product',
+      title: p.title,
+      origin: p.origin,
+      price: price,
+      qty: qty,
+      thumb: p.angles[0]?.img || 'assets/necklace_front.jpg',
+      weightKg: 0.4
+    };
+  } else if (type === 'kit') {
+    const kit = state.rawMaterialKits.find(k => k.id === productIdOrItem);
+    if (!kit) return;
+    itemToAdd = {
+      id: `kit-${kit.id}`,
+      productId: kit.id,
+      type: 'kit',
+      title: kit.name,
+      origin: kit.origin,
+      price: kit.price,
+      qty: qty,
+      thumb: kit.thumb,
+      weightKg: 1.2
+    };
+  }
+
+  if (!itemToAdd) return;
+
+  const existing = state.cart.find(item => item.id === itemToAdd.id);
+  if (existing) {
+    existing.qty += qty;
+  } else {
+    state.cart.push(itemToAdd);
+  }
+
+  saveCartToStorage();
+  renderCartUI();
+  showToast(`เพิ่ม "${itemToAdd.title}" ลงในตะกร้าสินค้าแล้ว 🛒`);
+};
+
+window.quickAddToCart = function(event, productId) {
+  if (event) event.stopPropagation();
+  window.addToCart(productId, 1, 'product');
+};
+
+window.removeFromCart = function(cartId) {
+  const item = state.cart.find(i => i.id === cartId);
+  const title = item ? item.title : 'สินค้า';
+  state.cart = state.cart.filter(i => i.id !== cartId);
+  saveCartToStorage();
+  renderCartUI();
+  showToast(`นำ "${title}" ออกจากตะกร้าแล้ว`);
+};
+
+window.updateCartItemQty = function(cartId, delta) {
+  const item = state.cart.find(i => i.id === cartId);
+  if (!item) return;
+
+  item.qty += delta;
+  if (item.qty <= 0) {
+    window.removeFromCart(cartId);
+    return;
+  }
+
+  saveCartToStorage();
+  renderCartUI();
+};
+
+window.clearCart = function() {
+  if (state.cart.length === 0) return;
+  state.cart = [];
+  saveCartToStorage();
+  renderCartUI();
+  showToast('ล้างตะกร้าสินค้าเรียบร้อยแล้ว');
+};
+
+function openCartDrawer() {
+  if (!cartDrawer || !cartDrawerBackdrop) return;
+  renderCartUI();
+  cartDrawer.classList.add('open');
+  cartDrawerBackdrop.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCartDrawer() {
+  if (!cartDrawer || !cartDrawerBackdrop) return;
+  cartDrawer.classList.remove('open');
+  cartDrawerBackdrop.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// Checkout Modal logic
+function openCheckoutModal() {
+  if (!checkoutModal) return;
+  if (state.cart.length === 0) {
+    showToast('ไม่มีสินค้าในตะกร้า กรุณาเลือกสินค้าก่อนชำระเงิน', 'normal');
+    return;
+  }
+
+  // Reset to form view
+  if (checkoutFormView) checkoutFormView.style.display = 'block';
+  if (orderSuccessView) orderSuccessView.style.display = 'none';
+
+  // Render items summary
+  if (checkoutItemsSummary) {
+    checkoutItemsSummary.innerHTML = state.cart.map(item => `
+      <div class="checkout-summary-item">
+        <span class="item-title">${item.title} × ${item.qty}</span>
+        <strong>${formatCurrency(item.price * item.qty)}</strong>
+      </div>
+    `).join('');
+  }
+
+  const subtotal = getCartSubtotal();
+  const shipping = getCartShipping();
+  const total = subtotal + shipping;
+
+  if (checkoutSubtotal) checkoutSubtotal.textContent = formatCurrency(subtotal);
+  if (checkoutShipping) checkoutShipping.textContent = shipping === 0 ? 'ฟรี (฿0)' : formatCurrency(shipping);
+  if (checkoutGrandTotal) checkoutGrandTotal.textContent = formatCurrency(total);
+  if (orderSubmitTotal) orderSubmitTotal.textContent = formatCurrency(total);
+
+  checkoutModal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCheckoutModal() {
+  if (!checkoutModal) return;
+  checkoutModal.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function handleCheckoutSubmit(e) {
+  e.preventDefault();
+
+  const name = document.getElementById('checkoutName').value;
+  const phone = document.getElementById('checkoutPhone').value;
+  const address = document.getElementById('checkoutAddress').value;
+  const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked')?.value || 'promptpay';
+  const grandTotal = getCartTotal();
+
+  const orderNum = 'RC-' + new Date().getFullYear() + '-' + Math.floor(1000 + Math.random() * 9000);
+
+  // Switch to success view
+  if (checkoutFormView) checkoutFormView.style.display = 'none';
+  if (orderSuccessView) {
+    orderSuccessView.style.display = 'flex';
+    if (successOrderId) successOrderId.textContent = orderNum;
+    if (successOrderTotal) successOrderTotal.textContent = formatCurrency(grandTotal);
+    if (successOrderDetailsList) {
+      successOrderDetailsList.innerHTML = `
+        <div><strong>ผู้รับ:</strong> ${name} (${phone})</div>
+        <div><strong>ที่อยู่จัดส่ง:</strong> ${address}</div>
+        <div><strong>วิธีชำระเงิน:</strong> ${paymentMethod === 'promptpay' ? 'พร้อมเพย์ QR Code (ชำระแล้ว)' : paymentMethod === 'cod' ? 'เก็บเงินปลายทาง' : 'บัตรเครดิต'}</div>
+        <div><strong>รายการสินค้า:</strong> ${state.cart.map(i => `${i.title} (${i.qty} ชิ้น)`).join(', ')}</div>
+      `;
+    }
+  }
+
+  // Clear Cart after success
+  state.cart = [];
+  saveCartToStorage();
+  updateCartBadges();
+
+  showToast(`สั่งซื้อคำสั่งซื้อ ${orderNum} สำเร็จ! ขอบคุณที่สนับสนุน RE:CRAFT 🎉`);
+}
+
+function initShoppingCartEngine() {
+  loadCartFromStorage();
+  updateCartBadges();
+
+  headerCartBtn?.addEventListener('click', openCartDrawer);
+  closeCartDrawerBtn?.addEventListener('click', closeCartDrawer);
+  cartDrawerBackdrop?.addEventListener('click', closeCartDrawer);
+  clearCartBtn?.addEventListener('click', clearCart);
+
+  cartExploreBtn?.addEventListener('click', () => {
+    closeCartDrawer();
+    const catalog = document.getElementById('catalog');
+    if (catalog) catalog.scrollIntoView({ behavior: 'smooth' });
+  });
+
+  cartCheckoutBtn?.addEventListener('click', () => {
+    closeCartDrawer();
+    openCheckoutModal();
+  });
+
+  closeCheckoutModalBtn?.addEventListener('click', closeCheckoutModal);
+  checkoutForm?.addEventListener('submit', handleCheckoutSubmit);
+  successDoneBtn?.addEventListener('click', closeCheckoutModal);
+
+  // Detail modal add to cart & buy now
+  addToCartDetailBtn?.addEventListener('click', () => {
+    if (!state.selectedProduct) return;
+    window.addToCart(state.selectedProduct.id, 1, 'product');
+  });
+
+  buyNowBtn?.addEventListener('click', () => {
+    if (!state.selectedProduct) return;
+    window.addToCart(state.selectedProduct.id, 1, 'product');
+    closeProductDetail();
+    openCheckoutModal();
+  });
+
+  // Toggle PromptPay preview when radio changes
+  document.querySelectorAll('input[name="paymentMethod"]').forEach(radio => {
+    radio.addEventListener('change', (e) => {
+      document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('active'));
+      e.target.closest('.payment-option')?.classList.add('active');
+      if (promptpayPreviewBox) {
+        promptpayPreviewBox.style.display = e.target.value === 'promptpay' ? 'block' : 'none';
+      }
+    });
+  });
+}
+
 // Initial Boot
 document.addEventListener('DOMContentLoaded', () => {
   renderCatalog();
@@ -3229,4 +3672,5 @@ document.addEventListener('DOMContentLoaded', () => {
   init3DCardTiltEngine();
   initAiScannerEngine();
   initMobileDrawerEngine();
+  initShoppingCartEngine();
 });
