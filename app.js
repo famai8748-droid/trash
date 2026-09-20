@@ -714,6 +714,36 @@ const scannerHistoryList = document.getElementById('scannerHistoryList');
 const clearScannerHistoryBtn = document.getElementById('clearScannerHistoryBtn');
 
 
+// Mobile Drawer Navigation Elements
+const mobileMenuToggleBtn = document.getElementById('mobileMenuToggleBtn');
+const mobileNavCloseBtn = document.getElementById('mobileNavCloseBtn');
+const mobileNavBackdrop = document.getElementById('mobileNavBackdrop');
+const mobileNavDrawer = document.getElementById('mobileNavDrawer');
+const mobileDrawerZoneBtn = document.getElementById('mobileDrawerZoneBtn');
+const mobileDrawerScannerBtn = document.getElementById('mobileDrawerScannerBtn');
+const mobileDrawerSellWasteBtn = document.getElementById('mobileDrawerSellWasteBtn');
+const mobileDrawerPostBtn = document.getElementById('mobileDrawerPostBtn');
+const mobileDrawerSupplyBtn = document.getElementById('mobileDrawerSupplyBtn');
+const mobileDrawerBlueprintBtn = document.getElementById('mobileDrawerBlueprintBtn');
+const mobileDrawerAdminBtn = document.getElementById('mobileDrawerAdminBtn');
+const mobileDrawerBidsBtn = document.getElementById('mobileDrawerBidsBtn');
+const mobileDrawerWishlistBtn = document.getElementById('mobileDrawerWishlistBtn');
+const mobilePendingCountBadge = document.getElementById('mobilePendingCountBadge');
+const mobileBidCountBadge = document.getElementById('mobileBidCountBadge');
+const mobileMenuAlertBadge = document.getElementById('mobileMenuAlertBadge');
+
+function openMobileDrawer() {
+  mobileNavDrawer?.classList.add('open');
+  mobileNavBackdrop?.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeMobileDrawer() {
+  mobileNavDrawer?.classList.remove('open');
+  mobileNavBackdrop?.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
 // Zone Modal Handlers (Consolidated Zone Navigation)
 function openZoneModal() {
   if (zoneModal) {
@@ -1476,6 +1506,15 @@ function updateAdminBadges() {
   adminIntakeBadge.textContent = intakeCount;
   pendingCountBadge.style.display = totalAlerts > 0 ? 'inline-block' : 'none';
 
+  if (mobilePendingCountBadge) {
+    mobilePendingCountBadge.textContent = totalAlerts;
+    mobilePendingCountBadge.style.display = totalAlerts > 0 ? 'inline-block' : 'none';
+  }
+  if (mobileMenuAlertBadge) {
+    mobileMenuAlertBadge.textContent = totalAlerts;
+    mobileMenuAlertBadge.style.display = totalAlerts > 0 ? 'inline-block' : 'none';
+  }
+
   metricTotalWeight.textContent = `${state.totalRescuedKg.toLocaleString()} กก.`;
   if (statOceanWaste) {
     statOceanWaste.textContent = `${(state.totalRescuedKg / 1000).toFixed(1)} ตัน`;
@@ -2051,6 +2090,7 @@ closeDetailModalBtn.addEventListener('click', closeProductDetail);
 
 window.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
+    closeMobileDrawer();
     if (aiScannerModal && aiScannerModal.classList.contains('open')) {
       closeAiScannerModal();
     }
@@ -3122,6 +3162,56 @@ function initAiScannerEngine() {
   });
 }
 
+function initMobileDrawerEngine() {
+  mobileMenuToggleBtn?.addEventListener('click', openMobileDrawer);
+  mobileNavCloseBtn?.addEventListener('click', closeMobileDrawer);
+  mobileNavBackdrop?.addEventListener('click', closeMobileDrawer);
+
+  mobileDrawerZoneBtn?.addEventListener('click', () => {
+    closeMobileDrawer();
+    openZoneModal();
+  });
+  mobileDrawerScannerBtn?.addEventListener('click', () => {
+    closeMobileDrawer();
+    openAiScannerModal();
+  });
+  mobileDrawerSellWasteBtn?.addEventListener('click', () => {
+    closeMobileDrawer();
+    openSellWasteModal();
+  });
+  mobileDrawerPostBtn?.addEventListener('click', () => {
+    closeMobileDrawer();
+    openPostModal();
+  });
+  mobileDrawerSupplyBtn?.addEventListener('click', () => {
+    closeMobileDrawer();
+    openSupplyModal();
+  });
+  mobileDrawerBlueprintBtn?.addEventListener('click', () => {
+    closeMobileDrawer();
+    openBlueprintModal();
+  });
+  mobileDrawerAdminBtn?.addEventListener('click', () => {
+    closeMobileDrawer();
+    openAdminModal();
+  });
+  mobileDrawerBidsBtn?.addEventListener('click', () => {
+    closeMobileDrawer();
+    showToast('กำลังแสดงชิ้นงานที่คุณกำลังร่วมประมูล', 'auction');
+    state.activeFilter = 'auction';
+    document.querySelectorAll('.pill-btn').forEach(b => {
+      b.classList.toggle('active', b.getAttribute('data-filter') === 'auction');
+    });
+    renderCatalog();
+    document.getElementById('catalog')?.scrollIntoView({ behavior: 'smooth' });
+  });
+  mobileDrawerWishlistBtn?.addEventListener('click', () => {
+    closeMobileDrawer();
+    showToast('กำลังแสดงรายการโปรดที่คุณบันทึกไว้', 'normal');
+    document.getElementById('catalog')?.scrollIntoView({ behavior: 'smooth' });
+  });
+}
+
 // Initial Boot
 document.addEventListener('DOMContentLoaded', () => {
   renderCatalog();
@@ -3130,4 +3220,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initRichLuxuryParallaxEngine();
   init3DCardTiltEngine();
   initAiScannerEngine();
+  initMobileDrawerEngine();
 });

@@ -178,9 +178,97 @@
             </svg>
           </button>
         </div>
+
+        <!-- Mobile Menu Toggle Button (Visible on mobile/tablet) -->
+        <button class="mobile-menu-toggle-btn" id="mobileMenuToggleBtn" aria-label="เปิดเมนูหลัก" title="เมนูหลัก">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="badge-count mobile-menu-badge" id="mobileMenuAlertBadge">4</span>
+        </button>
       </div>
     </div>
   </header>
+
+  <!-- Mobile Navigation Drawer & Backdrop -->
+  <div class="mobile-nav-backdrop" id="mobileNavBackdrop"></div>
+  <aside class="mobile-nav-drawer" id="mobileNavDrawer" aria-label="เมนูนำทางบนมือถือ">
+    <div class="mobile-nav-header">
+      <div class="brand-text-wrap">
+        <span class="brand-name">RE:CRAFT</span>
+        <span class="brand-tag">UPCYCLE STUDIO</span>
+      </div>
+      <button class="mobile-nav-close-btn" id="mobileNavCloseBtn" aria-label="ปิดเมนู">&times;</button>
+    </div>
+
+    <div class="mobile-nav-body">
+      <!-- Section 1: Quick Main Actions -->
+      <div class="mobile-nav-section">
+        <span class="mobile-nav-label">เมนูหลัก & ช้อปปิ้ง</span>
+        <button class="mobile-nav-item" id="mobileDrawerZoneBtn">
+          <span class="mobile-nav-icon">🏛️</span>
+          <span class="mobile-nav-text">เลือกโซน & หมวดหมู่</span>
+          <span class="mobile-nav-arrow">&rarr;</span>
+        </button>
+        <button class="mobile-nav-item highlight-scanner" id="mobileDrawerScannerBtn">
+          <span class="mobile-nav-icon">📷</span>
+          <span class="mobile-nav-text">สแกนขยะ AI Vision</span>
+          <span class="mobile-nav-pill">HOT</span>
+        </button>
+        <button class="mobile-nav-item" id="mobileDrawerSellWasteBtn">
+          <span class="mobile-nav-icon">💸</span>
+          <span class="mobile-nav-text">ส่งขยะที่คุณเก็บได้มาขาย</span>
+          <span class="mobile-nav-arrow">&rarr;</span>
+        </button>
+        <button class="mobile-nav-item" id="mobileDrawerPostBtn">
+          <span class="mobile-nav-icon">➕</span>
+          <span class="mobile-nav-text">ลงขายสินค้าอัพไซเคิล</span>
+          <span class="mobile-nav-arrow">&rarr;</span>
+        </button>
+      </div>
+
+      <!-- Section 2: Studio Tools -->
+      <div class="mobile-nav-section">
+        <span class="mobile-nav-label">สตูดิโอ & แหล่งเรียนรู้</span>
+        <button class="mobile-nav-item" id="mobileDrawerSupplyBtn">
+          <span class="mobile-nav-icon">📦</span>
+          <span class="mobile-nav-text">คลังชุดวัตถุดิบ (Raw Kits)</span>
+          <span class="mobile-nav-arrow">&rarr;</span>
+        </button>
+        <button class="mobile-nav-item" id="mobileDrawerBlueprintBtn">
+          <span class="mobile-nav-icon">📖</span>
+          <span class="mobile-nav-text">สูตรพิมพ์เขียวอัพไซเคิล</span>
+          <span class="mobile-nav-arrow">&rarr;</span>
+        </button>
+        <button class="mobile-nav-item" id="mobileDrawerAdminBtn">
+          <span class="mobile-nav-icon">⚙️</span>
+          <span class="mobile-nav-text">ระบบหลังบ้านแอดมิน</span>
+          <span class="badge-count admin-badge" id="mobilePendingCountBadge">4</span>
+        </button>
+      </div>
+
+      <!-- Section 3: User Portfolio -->
+      <div class="mobile-nav-section">
+        <span class="mobile-nav-label">ข้อมูลการใช้งานของฉัน</span>
+        <button class="mobile-nav-item" id="mobileDrawerBidsBtn">
+          <span class="mobile-nav-icon">🔨</span>
+          <span class="mobile-nav-text">รายการประมูลที่เคาะ</span>
+          <span class="badge-count" id="mobileBidCountBadge">2</span>
+        </button>
+        <button class="mobile-nav-item" id="mobileDrawerWishlistBtn">
+          <span class="mobile-nav-icon">💖</span>
+          <span class="mobile-nav-text">รายการโปรดที่บันทึก</span>
+          <span class="mobile-nav-arrow">&rarr;</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Footer -->
+    <div class="mobile-nav-footer">
+      <p>RE:CRAFT Circular Luxury Archive • 2026</p>
+      <small>ระบบตลาดสินค้าอัพไซเคิลหาดบางแสน</small>
+    </div>
+  </aside>
 
   <!-- Hero Story Highlight Banner -->
   <section class="hero-story-banner">
