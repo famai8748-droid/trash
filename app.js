@@ -3075,8 +3075,10 @@ window.renderModelFineTuningMatrix = renderModelFineTuningMatrix;
 function initAiScannerEngine() {
   loadScannerHistory();
 
-  // Launcher Dock Trigger
+  // Launcher Dock & Mobile Top Triggers
   openAiScannerBtn?.addEventListener('click', openAiScannerModal);
+  document.getElementById('mobileHeaderScannerBtn')?.addEventListener('click', openAiScannerModal);
+  document.getElementById('topAiFeatureBtn')?.addEventListener('click', openAiScannerModal);
   closeAiScannerModalBtn?.addEventListener('click', closeAiScannerModal);
 
   // Backdrop click to close
